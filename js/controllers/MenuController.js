@@ -13,13 +13,13 @@
         '</ul>';
 
 
-    var styles = `dupa`;
+    //var styles = `dupa`;
 
-    //var styles = "<style>" +
-    //    ".active {" +
-    //    "background: red;" +
-    //    "}" +
-    //"</style>";
+    var styles = "<style>" +
+        ".active {" +
+        "background: red;" +
+        "}" +
+        "</style>";
 
     //<style>
 
@@ -29,17 +29,17 @@
     var root = host.createShadowRoot();
     root.innerHTML = template + styles;
 
-        root.getElementById("MainMenu").addEventListener('click', function (e) {
-            console.log(e.target.dataset);
+    root.getElementById("MainMenu").addEventListener('click', function (e) {
+        console.log(e.target.dataset);
 
-            if (currentlyClickedElement != null)
-                currentlyClickedElement.classList.remove('active');
+        if (currentlyClickedElement != null)
+            currentlyClickedElement.classList.remove('active');
 
-            currentlyClickedElement = e.target;
+        currentlyClickedElement = e.target;
 
-            if (e.target.classList.length == 0) {
-                e.target.classList.add('active');
-            }
+        if (e.target.classList.length == 0) {
+            e.target.classList.add('active');
+        }
 
-        })
+    })
 })();

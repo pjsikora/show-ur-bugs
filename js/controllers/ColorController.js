@@ -12,10 +12,11 @@ R: <input id="borderColorRed">
     B: <input id="fillColorBlue">
     </div>`;
 
-    var styles = ``;
+    var styles = `<style>input { width: 50px;}</style>`;
 
     var host = document.querySelector('colorer');
     var root = host.createShadowRoot();
+
     root.innerHTML = template + styles;
 })();
 

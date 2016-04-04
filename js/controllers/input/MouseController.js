@@ -1,6 +1,6 @@
 (function () {
-    canvas.addEventListener('mousedown touchstart', onMouseDown);
-    canvas.addEventListener('mouseup touchend', onMouseUp);
+    canvas.addEventListener('mousedown', onMouseDown);
+    canvas.addEventListener('mouseup', onMouseUp);
 
     var mouseDownX = null,
         mouseDownY = null,
@@ -26,6 +26,10 @@
         mouseUpY = e.clientY;
 
         console.log(countOffset());
+
+        var event = new Event('pizuo');
+
+        document.dispatchEvent(event);
 
         var __details = {
             offset: countOffset()
