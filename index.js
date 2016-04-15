@@ -48,9 +48,6 @@ app.get('/getjson', function (req, res) {
 });
 
 
-app.post();
-
-
 app.listen(3000, function () {
     console.log('Lets rock on port 3000!');
 });
