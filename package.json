@@ -4,6 +4,7 @@
   "description": "commentator of image files",
   "main": "index.html",
   "scripts": {
+    "start": "node index.js",
     "test": "none"
   },
   "repository": {
