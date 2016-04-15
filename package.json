@@ -4,8 +4,10 @@
   "description": "commentator of image files",
   "main": "index.html",
   "scripts": {
-    "start": "node index.js",
-    "test": "none"
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "5.2.0"
   },
   "repository": {
     "type": "git",
