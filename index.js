@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 
+var port = process.env.PORT || 8080;
+
 app.use(express.static('public'));
 
 app.get('/getjson', function (req, res) {
@@ -47,6 +49,6 @@ app.get('/getjson', function (req, res) {
     });
 });
 
-app.listen(8080, function () {
-    console.log('Lets rock on port 3000!');
+app.listen(port, function () {
+    console.log('Lets rock on port '+port+'!');
 });
