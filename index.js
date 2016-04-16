@@ -47,6 +47,6 @@ app.get('/getjson', function (req, res) {
     });
 });
 
-app.listen(80, function () {
+app.listen(8080, function () {
     console.log('Lets rock on port 3000!');
 });
