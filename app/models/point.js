@@ -11,12 +11,24 @@ var PointSchema   = new Schema({
         type: Number,
         required: true
     },
+    removed: {
+        type: Boolean,
+        default: false
+    },
     createDate: Date,
-    editDate: Array,
+    editDates: [{
+        authorID: String,
+        date: Date
+    }],
+    isRemoved: {
+        type: Boolean,
+        default: false
+    },
     isOpened: {
         type: Boolean,
         default: true
     },
+
 
     viewID: String
 });

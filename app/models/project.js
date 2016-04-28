@@ -3,10 +3,12 @@ var Schema       = mongoose.Schema;
 
 var ProjectSchema   = new Schema({
     name: String,
-    ID: String,
     createDate: Date,
-    createdBy: Number,
-    isOpened: Boolean
+    createdBy: String,
+    isOpened: {
+        type: Boolean,
+        default: true
+    }
 });
 
 module.exports = mongoose.model('Project', ProjectSchema);

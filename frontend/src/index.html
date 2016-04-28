@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>Graphic editor</title>
+    <script src="js/all.js"></script>
+    <base href="/">
+</head>
+
+<body>
+<!-- Routed views go here -->
+<router-outlet></router-outlet>
+<my-app>loading...</my-app>
+<script>
+    System.config({
+        packages: {'app': {defaultExtension: 'js'}}
+    });
+    System.import('app/boot');
+</script>
+</body>
+</html>
