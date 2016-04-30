@@ -14,7 +14,7 @@ var scriptToLoad = [
         'node_modules/rxjs/bundles/Rx.js',
         'node_modules/angular2/bundles/angular2.js',
         'node_modules/angular2/bundles/http.js',
-        'node_modules/angular2/bundles/router.js'
+        'node_modules/angular2/bundles/router.dev.js'
     ],
     src = {
         ts: './src/**/*.ts',
