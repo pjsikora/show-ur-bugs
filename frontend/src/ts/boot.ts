@@ -8,4 +8,5 @@ import {AppService} from "./app.service";
 bootstrap(AppComponent, [
     AppService,
     HTTP_PROVIDERS,
-    ROUTER_PROVIDERS]);
+    ROUTER_PROVIDERS,
+]);
