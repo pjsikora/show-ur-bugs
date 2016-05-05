@@ -16,7 +16,10 @@ var UserSchema   = new Schema({
         type: String,
         required: true
     },
-    createDate: Date
+    createDate: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 module.exports = mongoose.model('User', UserSchema);

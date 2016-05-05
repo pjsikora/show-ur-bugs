@@ -126,7 +126,7 @@ var routerScreenshots = require('./app/routes/screenshots.js');
 
 // Define port
 // var port = process.env.PORT || 8080;
-var port = 8090;
+var port = 8091;
 
 
 //console.log(process.env.ENV_VARIABLE);
@@ -150,11 +150,11 @@ app.get('/checker', function(req, res) {
 });
 
 // Routes
-app.use('/users', routerUsers);
-app.use('/points', routerPoints);
-app.use('/projects', routerProjects);
-app.use('/views', routerViews);
-app.use('/screenshots', routerScreenshots);
+app.use('/api/users', routerUsers);
+app.use('/api/points', routerPoints);
+app.use('/api/projects', routerProjects);
+app.use('/api/views', routerViews);
+app.use('/api/screenshots', routerScreenshots);
 
 //
 app.listen(port, function () {

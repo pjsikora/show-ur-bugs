@@ -1,17 +1,27 @@
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 var ViewSchema   = new Schema({
-    name: String,
-
-    projectID: String,
-
-    createDate: Date,
-
-    createdBy: {
+    name: {
+        type: String,
+        required: true
+    },
+    screenshotURL: {
         type: String
     },
-    
+    description: String,
+    projectID: {
+        type: String,
+        required: true
+    },
+    createDate: {
+        type: Date,
+        default: Date.now
+    },
+    createdBy: {
+        type: String,
+        required: true
+    },
     isOpened: {
         type: Boolean,
         default: true

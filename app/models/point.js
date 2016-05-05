@@ -15,7 +15,13 @@ var PointSchema   = new Schema({
         type: Boolean,
         default: false
     },
-    createDate: Date,
+    removedDate: {
+        type: Date
+    },
+    createDate: {
+        type: Date,
+        default: Date.now
+    },
     editDates: [{
         authorID: String,
         date: Date

@@ -34,7 +34,6 @@ router.use(function(req, res, next) {
     }
 });
 
-
 function pointsAll (req, res) {
     Point.find({}, function (err, points) {
         if (err) {
