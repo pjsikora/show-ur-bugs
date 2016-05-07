@@ -25,6 +25,10 @@ var ViewSchema   = new Schema({
     isOpened: {
         type: Boolean,
         default: true
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false
     }
 
 });

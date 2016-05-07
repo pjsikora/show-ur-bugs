@@ -6,38 +6,6 @@ var express = require('express'),
     jwt = require('jsonwebtoken'),
     config = require('../../config');
 
-
-router.use(function(req, res, next) {
-
-    // check header or url parameters or post parameters for token
-    var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
-    // decode token
-    if (token) {
-
-        // verifies secret and checks exp
-        jwt.verify(token, 'secretKey', function(err, decoded) {
-            if (err) {
-                return res.json({ success: false, message: 'Failed to authenticate token.' });
-            } else {
-                // if everything is good, save to request for use in other routes
-                req.decoded = decoded;
-                next();
-            }
-        });
-
-    } else {
-
-        // if there is no token
-        // return an error
-        return res.status(403).send({
-            success: false,
-            message: 'No token provided.'
-        });
-
-    }
-});
-
 router.post('/', function (req, res) {
     res.json({projects: req});
 });
@@ -81,49 +49,33 @@ function screenshotsCreate(req, res) {
 router.get('/create', screenshotsCreate);
 router.post('/create', screenshotsCreate);
 
-// function readAttribute(name) {
-//     return req.query[name] || req.body[name];
-// }
-
-
 /**
- * @url-in-browser /screenshots/read?group=group&project=project&view=view
+ * @url-in-browser /api/screenshots/read?group=group&project=directory&view=file2.png
  */
 function screenshotsRead(req, res) {
-    var image_origial = "screenshots/directory/le.png",
+    // Hardcoded
+    var image_origial = "screenshots/directory/file.png",
         token = req.query.token || req.body.token,
         group = req.query.group || req.body.group,
         project = req.query.project || req.body.project,
-        view = req.query.view || req.body.view;
-
-    console.log(group + '/' + project + '/' + view);
+        view = req.query.view || req.body.view,
+        file = group + '/' + project + '/' + view + '.png';
 
     // Check if file exists
-    if (fs.existsSync(image_origial)) {
+    if (fs.existsSync(file)) {
         // File exists so lets bring the base64 from it
         fs.readFile(image_origial, function (err, original_data) {
             var base64Image = original_data.toString('base64');
             res.send('<img src="data:image/png;base64,' + base64Image + '"/>');
             // res.json({ image: base64Image });
         });
-    }
-
-    // File doesnt exist - lets throw an error
-    else {
+    } else {
+        // File doesnt exist - lets throw an error
         res.json({status: "ERRROR", msg: "File doesnt exists"});
     }
 }
 
 router.get('/read', screenshotsRead);
 router.post('/read', screenshotsRead);
-
-// router.post('/update', function (req, res) {
-// });
-
-
-
-// router.post('/delete', function (req, res) {
-//
-// });
 
 module.exports = router;
