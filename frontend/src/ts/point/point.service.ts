@@ -3,9 +3,9 @@ import {Http, Headers} from "angular2/http";
 
 @Injectable()
 
-export class UserService {
+export class PointService {
     headers = new Headers();
-    apiUrl = '/api/users/';
+    apiUrl = '/api/points/';
 
     constructor(public http: Http) {}
 
@@ -17,19 +17,20 @@ export class UserService {
             .map(response => response.json());
     }
 
-    getUsers() {
+    getPoints() {
         return this.makeRequest(this.apiUrl, {});
     }
 
-    setUser(point) {
+    setPoint(point) {
         return this.makeRequest(this.apiUrl+'create', point);
     }
 
-    updateUser(point, data) {
+    updatePoint(point, data) {
         return this.makeRequest(this.apiUrl+'update', data);
     }
 
-    removeUser(id) {
+    removePoint(id) {
         return this.makeRequest(this.apiUrl+'delete', id);
     }
+
 }

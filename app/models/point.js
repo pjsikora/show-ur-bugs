@@ -11,32 +11,32 @@ var PointSchema   = new Schema({
         type: Number,
         required: true
     },
-    removed: {
-        type: Boolean,
-        default: false
-    },
-    removedDate: {
-        type: Date
-    },
     createDate: {
         type: Date,
         default: Date.now
+    },
+    createdBy: {
+        type: String
     },
     editDates: [{
         authorID: String,
         date: Date
     }],
-    isRemoved: {
+    isDeleted: {
         type: Boolean,
         default: false
+    },
+    deletedDate: {
+        type: Date
     },
     isOpened: {
         type: Boolean,
         default: true
     },
-
-
-    viewID: String
+    viewID: {
+        type: String,
+        required: true
+    }
 });
 
 module.exports = mongoose.model('Point', PointSchema);
