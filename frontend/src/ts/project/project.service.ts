@@ -4,7 +4,7 @@ import {Http, Headers} from "angular2/http";
 @Injectable()
 
 export class ProjectService {
-    serverUrl:string = '/points';
+    serverUrl:string = '/api/projects/';
     headers = new Headers();
 
     constructor(public http: Http) {}
@@ -18,18 +18,18 @@ export class ProjectService {
     }
 
     getProjects() {
-        return this.makeRequest('/projects', {});
+        return this.makeRequest(this.serverUrl, {});
     }
 
     setProject(point) {
-        return this.makeRequest('/projects/create', point);
+        return this.makeRequest(this.serverUrl+'create', point);
     }
 
     updateProject(point, data) {
-        return this.makeRequest('/projects/update', data);
+        return this.makeRequest(this.serverUrl+'update', data);
     }
 
     removeProject(id) {
-        return this.makeRequest('/projects/delete', id);
+        return this.makeRequest(this.serverUrl+'delete', id);
     }
 }

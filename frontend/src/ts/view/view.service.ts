@@ -5,6 +5,8 @@ import {Http, Headers} from "angular2/http";
 
 export class ViewService {
     headers = new Headers();
+    viewsApiUrl = '/api/views/';
+    pointsApiUrl = '/api/points/';
 
     constructor(public http: Http) {}
 
@@ -17,35 +19,35 @@ export class ViewService {
     }
 
     getViews() {
-        return this.makeRequest('/views', {});
+        return this.makeRequest(this.viewsApiUrl, {});
     }
 
     setView(point) {
-        return this.makeRequest('/views/create', point);
+        return this.makeRequest(this.viewsApiUrl+'create', point);
     }
 
     updateView(point, data) {
-        return this.makeRequest('/views/update', data);
+        return this.makeRequest(this.viewsApiUrl+'update', data);
     }
 
     removeView(id) {
-        return this.makeRequest('/views/delete', id);
+        return this.makeRequest(this.viewsApiUrl+'delete', id);
     }
 
     getPoints() {
-        return this.makeRequest('/points', {});
+        return this.makeRequest('/api/points', {});
     }
 
     setPoint(point) {
-        return this.makeRequest('/points/create', point);
+        return this.makeRequest('/api/points/create', point);
     }
 
     updatePoint(point, data) {
-        return this.makeRequest('/points/update', data);
+        return this.makeRequest('/api/points/update', data);
     }
 
     removePoint(id) {
-        return this.makeRequest('/points/delete', id);
+        return this.makeRequest('/api/points/delete', id);
     }
 
 }

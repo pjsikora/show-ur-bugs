@@ -6,10 +6,32 @@ import {ProjectService} from "./project.service";
 @Component({
     bindings: [ProjectService],
     template: `
-		<h2>Projects list component</h2>
+		<h2>Projects list</h2>
+    <table>
+        <thead>
+            <tr>
+                <td>Project name</td>
+                <td>createDate</td>
+                <td>createdBy</td>
+                <td>isOpened</td>
+                <td>isDeleted</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="#project of projects" class="project" >
+                <td>{{project.name}}</td>
+                <td>{{project.createDate}}</td>
+                <td>{{project.createdBy}}</td>
+                <td>{{project.isOpened}}</td>
+                <td>{{project.isDeleted}}</td>
+            </tr>
+        </tbody>
+   </table>
 	`
 })
 export class ProjectListComponent {
+    projects;
+
     constructor(public projectService:ProjectService) {
 
     }
@@ -126,7 +148,22 @@ export class ProjectListComponent {
     //
     // }
 
+    getProjects() {
+        this.projectService.getProjects()
+            .subscribe(
+                data => {
+                    // console.log(data);
+                    this.projects = data;
+                    // this.lsPoints = this.points;
+                },
+                error => console.error('Error: ' + error[0]),
+                () => {
+                    // console.log("Data loaded!")
+                }
+            )
+    }
+
     ngOnInit() {
-        // this.getPoints();
+        this.getProjects();
     }
 }

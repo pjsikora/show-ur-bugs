@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express'),
     router = express.Router(),
     jwt = require('jsonwebtoken'),
@@ -40,8 +42,17 @@ function listAll(req, res) {
     Project.find({}, function (err, points) {
         if (err) {
             console.log(err);
+        } else {
+            res.json(points);
         }
-        else {
+    });
+}
+
+function listAllUndeleted(req, res) {
+    Project.find({}, function (err, points) {
+        if (err) {
+            console.log(err);
+        } else {
             res.json(points);
         }
     });
@@ -71,25 +82,80 @@ router.get('/create', create);
 router.post('/create', create);
 
 function update(req, res) {
-    return {req: req, res: res};
+    var projectID = req.query._id || req.body._id,
+        newProjectData = {};
+
+    if (req.query.name || req.body.name) {
+        newProjectData.name = req.query.name || req.body.name;
+    }
+    if (req.query.description || req.body.description) {
+        newProjectData.description = req.query.description || req.body.description;
+    }
+    if (req.query.createDate || req.body.createDate) {
+        newProjectData.createDate = req.query.createDate || req.body.createDate;
+    }
+    if (req.query.createdBy || req.body.createdBy) {
+        newProjectData.createdBy = req.query.createdBy || req.body.createdBy;
+    }
+    if (req.query.isOpened || req.body.isOpened) {
+        newProjectData.isOpened = req.query.isOpened || req.body.isOpened;
+    }
+
+    var query = {_id: projectID},
+        newData = newProjectData;
+
+    Project.findOneAndUpdate(query, newData, {upsert: true}, function (err, doc) {
+        if (err) {
+            return res.json({status: "ERROR", error: err.toString()});
+        } else {
+            return res.json({status: "OK", msg: "succesfully saved"});
+        }
+    });
 }
 
 router.get('/update', update);
 router.post('/update', update);
 
-router.post('/delete',function(req, res) {
+
+function projectHardDelete(req, res) {
     Project.remove({_id: req.body._id}, function(err) {
         if (err) {
             res.json({
-                status: 'ERROR',
+                status: 'ERROR'
             });
-        }
-        else {
+        } else {
             res.json({
-                status: 'OK',
+                status: 'OK'
             });
         }
     });
-});
+}
+/**
+ * Function which setes the status isDeleted of element to true
+ * @param req
+ * @param res
+ * @
+ */
+function projectDelete(req, res) {
+    var viewID = req.query._id || req.body._id,
+        query = {
+            _id: viewID
+        },
+        newData = {
+            isDeleted: true
+        };
+
+    Project.findOneAndUpdate(query, newData, {upsert: true}, function (err, doc) {
+        if (err) {
+            return res.json({status: "ERROR", error: err.toString()});
+        } else {
+            return res.json({status: "OK", msg: "succesfully saved"});
+        }
+    });
+}
+
+// http://localhost:8091/api/projects/delete?_id=572b7774c92aaf9626fb8b41
+router.get('/delete', projectDelete);
+router.post('/delete', projectDelete);
 
 module.exports = router;
