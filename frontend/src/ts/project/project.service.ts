@@ -21,11 +21,15 @@ export class ProjectService {
         return this.makeRequest(this.serverUrl, {});
     }
 
-    setProject(point) {
-        return this.makeRequest(this.serverUrl+'create', point);
+    getProject(id) {
+        return this.makeRequest(this.serverUrl+'read', {id: id});
     }
 
-    updateProject(point, data) {
+    setProject(project) {
+        return this.makeRequest(this.serverUrl+'create', project);
+    }
+
+    updateProject(project, data) {
         return this.makeRequest(this.serverUrl+'update', data);
     }
 

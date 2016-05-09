@@ -13,10 +13,12 @@ import {PointService} from "./point.service";
                     <td>x</td>
                     <td>y</td>
                     <td>projectID</td>
+                    
                     <td>createDate</td>
-                    <td>isDeleted</td>
+                    <td>createdBy</td>
                     <td>deletedDate</td>
                     <td>isOpened</td>
+                    <td>isDeleted</td>
                 </tr>
             </thead>
             <tbody>
@@ -25,8 +27,10 @@ import {PointService} from "./point.service";
                     <td>{{point.x}}</td>
                     <td>{{point.y}}</td>
                     <td>{{point.projectID}}</td>
+                    
                     <td>{{point.createDate}}</td>
                     <td>{{point.createdBy}}</td>
+                    <td>{{point.deletedDate}}</td>
                     <td>{{point.isOpened}}</td>
                     <td>{{point.isDeleted}}</td>
                 </tr>

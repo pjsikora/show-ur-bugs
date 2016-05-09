@@ -61,6 +61,22 @@ function listAllUndeleted(req, res) {
 router.get('/', listAll);
 router.post('/', listAll);
 
+function readProject(req, res) {
+    var id = req.query.id || req.body.id;
+    console.log(id);
+
+    Project.findOne({_id: id}, function (err, projects) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(projects);
+        }
+    });
+}
+
+router.get('/read', readProject);
+router.post('/read', readProject);
+
 function create(req, res) {
     var project = new Project();
 

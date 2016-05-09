@@ -22,6 +22,10 @@ export class ViewService {
         return this.makeRequest(this.viewsApiUrl, {});
     }
 
+    getViewsOfProject(id) {
+        return this.makeRequest(this.viewsApiUrl+'read', {_id: id});
+    }
+
     setView(point) {
         return this.makeRequest(this.viewsApiUrl+'create', point);
     }

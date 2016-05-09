@@ -12,6 +12,7 @@ import {UserService} from "./user.service";
                 <tr>
                     <td>login</td>
                     <td>email</td>
+                    
                     <td>password</td>
                     <td>createDate</td>
                     <td>isDeleted</td>
@@ -22,11 +23,11 @@ import {UserService} from "./user.service";
                 <tr *ngFor="#user of users">
                     <td>{{user.login}}</td>
                     <td>{{user.email}}</td>
+                    
                     <td>{{user.password}}</td>
-                    <td>{{user.projectID}}</td>
                     <td>{{user.createDate}}</td>
-                    <td>{{user.createdBy}}</td>
                     <td>{{user.isDeleted}}</td>
+                    <td>{{user.deleteDate}}</td>
                 </tr>
             </tbody>
         </table>

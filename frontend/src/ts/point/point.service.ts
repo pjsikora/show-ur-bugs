@@ -7,6 +7,7 @@ export class PointService {
     headers = new Headers();
     apiUrl = '/api/points/';
 
+    
     constructor(public http: Http) {}
 
     private makeRequest(requestURL, object) {

@@ -10,6 +10,7 @@ import {ProjectService} from "./project.service";
     <table>
         <thead>
             <tr>
+                <!--<td>_id</td>-->
                 <td>Project name</td>
                 <td>createDate</td>
                 <td>createdBy</td>
@@ -19,7 +20,8 @@ import {ProjectService} from "./project.service";
         </thead>
         <tbody>
             <tr *ngFor="#project of projects" class="project" >
-                <td>{{project.name}}</td>
+                <!--<td>{{project._id}}</td>-->
+                <td><a href="/#/project/{{project._id}}">{{project.name}}</a></td>
                 <td>{{project.createDate}}</td>
                 <td>{{project.createdBy}}</td>
                 <td>{{project.isOpened}}</td>
