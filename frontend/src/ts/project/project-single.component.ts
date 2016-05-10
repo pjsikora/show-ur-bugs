@@ -9,18 +9,20 @@ import {ViewService} from "../view/view.service";
 @Component({
     bindings: [ProjectService, ViewService],
     template: `
-        <p>project: {{id}}</p>
-        <p>projectID (from : {{projectID}}</p>
-        <p>projectName: {{projectName}}</p>
         
+        <div class="row">
+        <p>project: {{id}}</p>
+        <p>projectID: {{projectID}}</p>
+        <p>projectName: {{projectName}}</p>
+        </div>
         
          <ul>
-            <li *ngFor="#view of views"></li>
+            <li *ngFor="#view of viewsOfProject"><a href="/#/view/{{view._id}}">{{view.name}}</a></li>
         </ul>
-    createDate
-    createdBy
-    isOpened
-    isDeleted
+    <!--createDate-->
+    <!--createdBy-->
+    <!--isOpened-->
+    <!--isDeleted-->
     `
 })
 
@@ -36,6 +38,7 @@ export class ProjectSingleComponent {
                 public projectService:ProjectService,
                 public viewService:ViewService) {
         this.id = params.get('id');
+        console.log(this.id);
     }
 
     getViewsOfProject(id) {
@@ -51,6 +54,7 @@ export class ProjectSingleComponent {
                 }
             );
     }
+
 
     getData(id) {
         this.projectService.getProject(id)

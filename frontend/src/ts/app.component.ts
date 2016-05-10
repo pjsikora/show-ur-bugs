@@ -2,16 +2,13 @@ import 'rxjs/add/operator/map'
 import {Component, OnInit} from "angular2/core";
 import {RouteConfig, Router, ROUTER_DIRECTIVES} from "angular2/router";
 
-import {ViewComponent} from "./view/view.component";
+import {ViewComponent, ViewListComponent} from "./view/index";
 
-import {UserListComponent} from "./user/user.list.component";
+import {UserListComponent} from "./user/index";
 
-import {ViewListComponent} from "./view/view.list.component";
-
-import {PointListComponent} from "./point/point.list.component";
+import {PointListComponent} from "./point/point-list.component";
 
 import {
-    ProjectComponent,
     ProjectSingleComponent,
     ProjectListComponent,
     ProjectFormComponent
@@ -24,9 +21,6 @@ import {
     template: `
           <nav>
             <ul class="menu">
-                <li>
-                    <a [routerLink]="['View']">View</a>
-                </li>
                 <li>
                     <a [routerLink]="['Views']">Views</a>
                 </li>
@@ -47,8 +41,9 @@ import {
           <router-outlet></router-outlet>
 `,
 })
+
 @RouteConfig([
-    {path:'/view', name: 'View', component: ViewComponent},
+    {path:'/view/:id', name: 'View', component: ViewComponent},
     // {path:'/view:id', name: 'View', component: ViewComponent},
     {path:'/views',        name: 'Views',       component: ViewListComponent},
     {path:'/users',        name: 'Users',       component: UserListComponent},
@@ -56,8 +51,8 @@ import {
     {path:'/projects',        name: 'Projects',       component: ProjectListComponent},
     {path:'/project/:id',        name: 'ProjectsSingle',       component: ProjectSingleComponent},
     {path:'/project/form',        name: 'ProjectForm',       component: ProjectFormComponent},
-    // {path:'/points',      name: 'Point',   component: ViewUno}
 ])
+
 export class AppComponent {
     constructor() {
 

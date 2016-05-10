@@ -18,11 +18,13 @@ import {ViewService} from "./view.service";
                     <td>createdBy</td>
                     <td>isOpened</td>
                     <td>isDeleted</td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="#view of views">
-                    <td>{{view.name}}</td>
+                    <td><a href="/#/view/{{view._id}}">{{view.name}}</a></td>
                     <td>{{view.screenshotURL}}</td>
                     <td>{{view.description}}</td>
                     <td>{{view.projectID}}</td>
@@ -30,6 +32,9 @@ import {ViewService} from "./view.service";
                     <td>{{view.createdBy}}</td>
                     <td>{{view.isOpened}}</td>
                     <td>{{view.isDeleted}}</td>
+                    
+                    <td><a href="" class="button alert">Delete</a></td>
+                <td><a href="" class="button">Edit</a></td>
                 </tr>
             </tbody>
         </table>

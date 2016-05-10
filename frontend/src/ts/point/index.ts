@@ -1,2 +1,2 @@
 export * from './point.service';
-export * from './point.list.component';
+export * from './point-list.component';

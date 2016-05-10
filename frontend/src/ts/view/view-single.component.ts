@@ -2,6 +2,7 @@ import 'rxjs/add/operator/map'
 import {Component, OnInit} from "angular2/core";
 
 import {ViewService} from "./view.service";
+import {RouteParams} from "angular2/router";
 
 @Component({
     // selector: 'my-app',
@@ -35,9 +36,9 @@ import {ViewService} from "./view.service";
 		            <p>isOpened: {{point.isOpened}}</p>
 		            <p>isRemoved: {{point.isRemoved}}</p>
 		          </div>
-		          <button (click)="updatePoint($event)" attr.data-id="{{point._id}}">Edit</button>
-		          <button (click)="deletePoint($event)" attr.data-id="{{point._id}}">Delete</button>
-		          <button (click)="closePoint($event)" attr.data-id="{{point._id}}">Close</button>
+		          <button class="button success" (click)="updatePoint($event)" attr.data-id="{{point._id}}">Edit</button>
+		          <button class="button alert" (click)="deletePoint($event)" attr.data-id="{{point._id}}">Delete</button>
+		          <button class="button" (click)="closePoint($event)" attr.data-id="{{point._id}}">Close</button>
 		    </div>
         </div>
         <div class="window__overlay">
@@ -51,9 +52,12 @@ export class ViewComponent {
     lsPoints;
     points;
     ding;
+    id;
 
-    constructor(public viewService:ViewService) {
-
+    constructor(params:RouteParams,
+                public viewService:ViewService) {
+        this.id = params.get('id');
+        console.log(this.id);
     }
 
     getPoints() {

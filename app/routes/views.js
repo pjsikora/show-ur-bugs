@@ -53,9 +53,11 @@ router.get('/create', viewCreate);
 router.post('/create', viewCreate);
 
 function read(req, res) {
-    var object = {};
+    // var object = {};
 
     var projectID = req.query.projectID || req.body.projectID;
+
+    console.log("ID: " + projectID);
 
     View.find({projectID: projectID}, function (err, views) {
         if (err) {

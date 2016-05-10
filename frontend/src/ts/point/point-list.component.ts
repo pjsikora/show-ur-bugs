@@ -9,16 +9,18 @@ import {PointService} from "./point.service";
 		<table>
             <thead>
                 <tr>
-                    <td>login</td>
+                    <td>name</td>
                     <td>x</td>
                     <td>y</td>
-                    <td>projectID</td>
+                    <!--<td>projectID</td>-->
                     
                     <td>createDate</td>
                     <td>createdBy</td>
-                    <td>deletedDate</td>
+                    <!--<td>deletedDate</td>-->
                     <td>isOpened</td>
                     <td>isDeleted</td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>
@@ -26,13 +28,16 @@ import {PointService} from "./point.service";
                     <td>{{point.name}}</td>
                     <td>{{point.x}}</td>
                     <td>{{point.y}}</td>
-                    <td>{{point.projectID}}</td>
+                    <!--<td>{{point.projectID}}</td>-->
                     
                     <td>{{point.createDate}}</td>
                     <td>{{point.createdBy}}</td>
-                    <td>{{point.deletedDate}}</td>
+                    <!--<td>{{point.deletedDate}}</td>-->
                     <td>{{point.isOpened}}</td>
                     <td>{{point.isDeleted}}</td>
+                    
+                    <td><a href="" class="button alert">Delete</a></td>
+                    <td><a href="" class="button">Edit</a></td>
                 </tr>
             </tbody>
         </table>

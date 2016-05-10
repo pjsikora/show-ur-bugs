@@ -17,6 +17,9 @@ import {UserService} from "./user.service";
                     <td>createDate</td>
                     <td>isDeleted</td>
                     <td>deleteDate</td>
+                    
+                    <td></td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +31,10 @@ import {UserService} from "./user.service";
                     <td>{{user.createDate}}</td>
                     <td>{{user.isDeleted}}</td>
                     <td>{{user.deleteDate}}</td>
+                    
+                    
+                <td><a href="" class="button alert">Delete</a></td>
+                <td><a href="" class="button">Edit</a></td>
                 </tr>
             </tbody>
         </table>
