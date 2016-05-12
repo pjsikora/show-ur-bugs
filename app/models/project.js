@@ -10,6 +10,9 @@ var ProjectSchema   = new Schema({
         type: Date,
         default: Date.now
     },
+    description: {
+        type: String
+    },
     createdBy: {
         type: String,
         required: true

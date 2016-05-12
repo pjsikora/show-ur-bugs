@@ -10,6 +10,7 @@ import {UserService} from "./user.service";
 		<table>
             <thead>
                 <tr>
+                    <td>_id</td>
                     <td>login</td>
                     <td>email</td>
                     
@@ -24,6 +25,7 @@ import {UserService} from "./user.service";
             </thead>
             <tbody>
                 <tr *ngFor="#user of users">
+                    <td>{{user._id}}</td>
                     <td>{{user.login}}</td>
                     <td>{{user.email}}</td>
                     
@@ -51,7 +53,6 @@ export class UserListComponent {
         this.userService.getUsers()
             .subscribe(
                 data => {
-                    // console.log(data);
                     this.users = data;
                     // this.lsPoints = this.points;
                 },

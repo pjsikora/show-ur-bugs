@@ -6,20 +6,14 @@ var express = require('express'),
     jwt = require('jsonwebtoken'),
     config = require('../../config');
 
-router.post('/', function (req, res) {
-    res.json({projects: req});
-});
-
-
 function screenshotsCreate(req, res) {
-    var token = req.query.token || req.body.token,
-        screenWidth = req.query.screenWidth || req.body.screenWidth || 1200,
+    var screenWidth = req.query.screenWidth || req.body.screenWidth || 1200,
         screenHeight = req.query.screenHeight || req.body.screenHeight || 'all',
         url = req.query.url || req.body.url,
         file = req.query.file || req.body.file,
         group = req.query.group || req.body.group,
-        directory = req.query.directory || req.body.directory,
-        screenShotURL = config.screenshotsDirectory + '/' + group + '/' + directory + '/' + file + '.png',
+        projectID = req.query.projectID || req.body.projectID,
+        screenShotURL = config.screenshotsDirectory + '/' + projectID + '/' + file + '.png',
 
         options = {
             screenSize: {
@@ -54,13 +48,15 @@ router.post('/create', screenshotsCreate);
  */
 function screenshotsRead(req, res) {
     // Hardcoded
-    var image_origial = "screenshots/directory/file.png",
+    var image_origial = req.query.url || req.body.url,
         token = req.query.token || req.body.token,
         group = req.query.group || req.body.group,
         project = req.query.project || req.body.project,
         view = req.query.view || req.body.view,
         file = group + '/' + project + '/' + view + '.png';
 
+
+    console.log(image_origial);
     // Check if file exists
     if (fs.existsSync(file)) {
         // File exists so lets bring the base64 from it

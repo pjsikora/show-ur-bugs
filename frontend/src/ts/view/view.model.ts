@@ -1,7 +1,7 @@
-export class ViewModel {
-    name: String;
-    screenshotURL: String;
-    description: String;
-    isOpened: Boolean;
+export interface ViewModel {
+    name: string;
+    screenshotURL: string;
+    description: string;
+    projectID: string;
 }
 

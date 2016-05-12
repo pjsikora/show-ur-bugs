@@ -6,7 +6,7 @@ import {ProjectService} from "./project.service";
 @Component({
     bindings: [ProjectService],
     template: `
-            <a class="button">Add new project</a>
+            <a class="button" href="/#/project/form">Add new project</a>
 		<h2>Projects list</h2>
     <table>
         <thead>
@@ -14,6 +14,7 @@ import {ProjectService} from "./project.service";
                 <!--<td>_id</td>-->
                 <td>Project name</td>
                 <td>createDate</td>
+                <td>description</td>
                 <td>createdBy</td>
                 <td>isOpened</td>
                 <td>isDeleted</td>
@@ -26,6 +27,7 @@ import {ProjectService} from "./project.service";
                 <!--<td>{{project._id}}</td>-->
                 <td><a href="/#/project/{{project._id}}">{{project.name}}</a></td>
                 <td>{{project.createDate}}</td>
+                <td>{{project.description}}</td>
                 <td>{{project.createdBy}}</td>
                 <td>{{project.isOpened}}</td>
                 <td>{{project.isDeleted}}</td>
