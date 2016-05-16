@@ -2,9 +2,11 @@ var express = require('express'),
     router = express.Router(),
     User = require('../models/user.js'),
     Project = require('../models/project.js'),
+    webshot = require('webshot'),
+    fs = require('fs'),
     View = require('../models/view.js');
 
-function getAll(req, res) {
+function listAllUndeleted(req, res) {
     View.find({}, function (err, views) {
         if (err) {
             console.log(err);
@@ -17,8 +19,24 @@ function getAll(req, res) {
 /**
  * @url-in-browser /api/views
  */
-router.get('/', getAll);
-router.post('/', getAll);
+router.get('/', listAllUndeleted);
+router.post('/', listAllUndeleted);
+
+function listAll(req, res) {
+    View.find({isDeleted: false}, function (err, views) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(views);
+        }
+    });
+}
+
+/**
+ * @url-in-browser /api/views/all
+ */
+router.get('/all', listAll);
+router.post('/all', listAll);
 
 function _valueGETorPOST(req, varName) {
     return req.query[varName] || req.body[varName];
@@ -27,8 +45,6 @@ function _valueGETorPOST(req, varName) {
 function viewCreate(req, res) {
     var view = new View(),
         returnObj = {};
-
-    console.log(view);
 
     view.name = _valueGETorPOST(req, 'name');
     view.screenshotURL = req.query.screenshotURL || req.body.screenshotURL;
@@ -51,6 +67,63 @@ function viewCreate(req, res) {
 // http://localhost:8090/views/create?name=First&screenshot=urlOfScreenshot&description=Description&projectID=projectID&isOpened=false&createdBy=userID
 router.get('/create', viewCreate);
 router.post('/create', viewCreate);
+
+function viewCreateWithScreenshot(req, res) {
+    var view = new View(),
+        returnObj = {};
+
+    view.name = _valueGETorPOST(req, 'name');
+    view.screenshotURL = req.query.screenshotURL || req.body.screenshotURL;
+    view.description = req.query.description || req.body.description;
+    view.projectID = req.query.projectID || req.body.projectID;
+    view.createdBy = req.query.createdBy || req.body.createdBy;
+    view.isOpened = req.query.isOpened || req.body.isOpened || true;
+
+
+    var screenWidth = req.query.screenWidth || req.body.screenWidth || 1200,
+        screenHeight = req.query.screenHeight || req.body.screenHeight || 'all',
+        url = req.query.url || req.body.url,
+        file = req.query.file || req.body.file,
+        group = req.query.group || req.body.group,
+        projectID = req.query.projectID || req.body.projectID,
+        screenShotURL = config.screenshotsDirectory + '/' + projectID + '/' + file + '.png',
+
+        options = {
+            screenSize: {
+                width: 2000,
+                height: 480
+            },
+            shotSize: {
+                width: 2000,
+                height: 'all'
+            }
+            // , userAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.20 (KHTML, like Gecko) Mobile/7B298g'
+        };
+
+    webshot(url, screenShotURL, options, function (err) {
+        if (err) {
+            res.json({status: 'ERROR', msg: err});
+        } else {
+            view.save(function (err) {
+                if (err) {
+                    res.json({status: 'ERROR', error: JSON.stringify(err)});
+                } else {
+                    res.json({url: req.body.url, status: 'OK', screenShotURL: screenShotURL});
+                }
+            });
+
+
+        }
+    });
+
+
+    //TODO check if ID of user exists
+    //TODO check if ID of project exists
+
+}
+
+router.get('/createwithscreenshot', viewCreateWithScreenshot);
+router.post('/createwithscreenshot', viewCreateWithScreenshot);
 
 function read(req, res) {
     // var object = {};

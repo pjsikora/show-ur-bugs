@@ -34,19 +34,36 @@ var express = require('express'),
 //     }
 // });
 
-function pointsAll (req, res) {
-    Point.find({}, function (err, points) {
+function listAllUndeleted(req, res) {
+    Point.find({isDeleted: false}, function (err, points) {
         if (err) {
             console.log(err);
-        }
-        else {
+        } else {
             res.json(points);
         }
     });
 }
 
-router.get('/', pointsAll);
-router.post('/', pointsAll);
+// http://localhost:8091/api/projects/
+router.get('/all', listAllUndeleted);
+router.post('/all', listAllUndeleted);
+
+
+
+function listAll(req, res) {
+    Point.find({}, function (err, points) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(points);
+        }
+    });
+}
+
+
+
+router.get('/', listAll);
+router.post('/', listAll);
 
 router.post('/create', function (req, res) {
     var point = new Point();

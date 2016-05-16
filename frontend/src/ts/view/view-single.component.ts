@@ -16,9 +16,8 @@ import {RouteParams} from "angular2/router";
 
         .point { position: absolute; width: 10px; height: 10px; border: 1px solid #fff; background: black; border-radius: 50%;}
 
-        // .window__overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,.5);}
-        // .window__content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; background: #fff; }
-
+        .window__overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,.5);}
+        .window__content { position: absolute; top: 50%; left: 50%; padding: 10px; transform: translate(-50%, -50%); width: 500px; height: 500px; background: #fff; border-radius: 10px; }
     `],
     template: `
 		<div class="screenshotView" style="position: relative;" (click)="createPoint($event)">
@@ -43,15 +42,19 @@ import {RouteParams} from "angular2/router";
         </div>
         <div class="window__overlay">
             <div class="window__content">
-                <div class="window__close"></div>
+                <div class="window__close" (click)="closeWindow($event)">close</div>
+                <input type="text" placeholder="Name">
+                <textarea name="" id="" cols="30" rows="10" placeholder="Description"></textarea>
+                <button (click)="createPoint($event)" class="button">Add point</button>
             </div>
         </div>
+        
 	`
 })
+
 export class ViewComponent {
     lsPoints;
     points;
-    ding;
     id;
 
     constructor(params:RouteParams,
@@ -70,15 +73,16 @@ export class ViewComponent {
         this.viewService.getPoints()
             .subscribe(
                 data => {
-                    // console.log(data);
                     this.points = data;
                     this.lsPoints = this.points;
                 },
                 error => console.error('Error: ' + error[0]),
-                () => {
-                    // console.log("Data loaded!")
-                }
+                () => {}
             )
+    }
+
+    closeWindow(e):void {
+        console.log("close window");
     }
 
     createPoint(e) {
@@ -102,35 +106,35 @@ export class ViewComponent {
                     // TODO Synchronize with localstorage
                 },
                 error => console.log('Error: ' + error[0]),
-                () => {
-                }
+                () => {}
             );
     }
 
     deletePoint(event) {
+        event.preventDefault();
         var elId = event.target.dataset.id,
             idInArray = null;
 
+        console.log(event);
+
         // Check index of element
-        this.points.forEach(function (el, index) {
-            if (el._id == elId) {
-                idInArray = index;
-            }
-        });
+        // this.points.forEach(function (el, index) {
+        //     if (el._id == elId) {
+        //         idInArray = index;
+        //     }
+        // });
 
         // Remove element with index
-        this.points.splice(idInArray, 1);
+        // this.points.splice(idInArray, 1);
 
-        this
-            .viewService
+        this.viewService
             .removePoint({_id: event.target.dataset.id})
             .subscribe(
                 data => {
                     // TODO Synchronize with localstorage
                 },
                 error => console.log('Error: ' + error[0]),
-                () => {
-                }
+                () => {}
             );
     }
 
@@ -149,10 +153,7 @@ export class ViewComponent {
         // Remove element with index
         this.points.splice(idInArray, 1);
 
-        // console.log(this.points);
-
-        this
-            .viewService
+        this.viewService
             .removePoint({_id: event.target.dataset.id})
             .subscribe(
                 data => {

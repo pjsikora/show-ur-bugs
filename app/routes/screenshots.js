@@ -38,7 +38,7 @@ function screenshotsCreate(req, res) {
 }
 
 /**
- * @url-in-browser /screenshots/create?url=google.com&file=file&directory=directory
+ * @url-in-browser /api/screenshots/create?url=google.com&file=file&directory=directory
  */
 router.get('/create', screenshotsCreate);
 router.post('/create', screenshotsCreate);

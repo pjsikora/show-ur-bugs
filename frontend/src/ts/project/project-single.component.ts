@@ -27,18 +27,34 @@ import {ScreenshotService} from "../screenshot/screenshot.service";
         <h4>Views</h4>
         
         <a class="button" (click)="showAddViewWindow()">Add View</a>
-         <table>
+         
+         <div *ngIf="viewsOfProject.length <= 0">
+            <p>No views</p>
+         </div>
+            
+         <table *ngIf="viewsOfProject.length > 0">
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>isDeleted</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
             <tr *ngFor="#view of viewsOfProject">
                 <td><a href="/#/view/{{view._id}}">{{view.name}}</a></td>
-                <td><a href="" class="button alert">Delete</a></td>
-                <td><a href="" class="button">Edit</a></td>
+                <td><a href="/#/view/{{view._id}}">{{view.isDeleted}}</a></td>
+                <td><a href="" class="button alert" (click)="deleteProject($event)" data-id="">Delete</a></td>
+                <td><a href="" class="button" (click)="editProject($event)">Edit</a></td>
             </tr>
+            </tbody>
         </table>
-        <div class="overlay" [style.display]="winVisible ? 'block' : 'none'">
+        <div class="overlay" [style.display]="isWinVisible ? 'block' : 'none'">
             <div class="window">
                 <h5>View details</h5>
                 <a (click)="hideAddViewWindow()">Close</a>
-                <form #myForm="ngForm" (ngSubmit)="createView()">
+                <form #myForm="ngForm" (ngSubmit)="createView()" [style.display]="!isFormWorking ? 'block' : 'none'">
                           <label>View name
                             <input type="text" placeholder="View name" ngControl="name" [(ngModel)]="newView.name">
                           </label>
@@ -61,27 +77,29 @@ import {ScreenshotService} from "../screenshot/screenshot.service";
 })
 
 export class ProjectSingleComponent {
-    id:string;
-    users;
-    project;
-    projectID;
-    projectName;
-    winVisible = false;
-    newView:ViewModel;
+    private id:string;
+    private users;
+    private project;
+    private projectID;
+    private projectName;
+    private isFormWorking:Boolean = false;
+    private isWinVisible:Boolean = false;
+    private newView:ViewModel;
     ngForm;
 
-    viewsOfProject;
+    private viewsOfProject:Array = new Array();
 
     constructor(params:RouteParams,
                 public projectService:ProjectService,
                 public userService:UserService,
                 public viewService:ViewService,
                 public screenshotService:ScreenshotService) {
+
         this.id = params.get('id');
         console.log(this.id);
     }
 
-    getViewsOfProject(id) {
+    private getViewsOfProject(id) {
         this.viewService.getViewsOfProject(id)
             .subscribe(
                 data => {
@@ -94,12 +112,16 @@ export class ProjectSingleComponent {
             );
     }
 
-    hideAddViewWindow() {
-        this.winVisible = !this.winVisible;
+    private removeView() {
+
     }
 
-    showAddViewWindow() {
-        this.winVisible = !this.winVisible;
+    private hideAddViewWindow() {
+        this.isWinVisible = !this.isWinVisible;
+    }
+
+    private showAddViewWindow() {
+        this.isWinVisible = !this.isWinVisible;
     }
 
     getUsers() {
@@ -107,7 +129,6 @@ export class ProjectSingleComponent {
             .subscribe(
                 data => {
                     this.users = data;
-
                 },
                 error => console.error('Error: ' + error[0]),
                 () => {
@@ -115,41 +136,38 @@ export class ProjectSingleComponent {
             )
     }
 
-    makeScreenshot() {
-
-    }
-
-    createView() {
-        var screenshotObj = {
-            url: this.newView.screenshotURL,
-            projectID: this.id,
-            file: 'sc'
-        }
-
-        this.screenshotService.make(screenshotObj).subscribe(
-            data => {
-                console.log(data);
-            },
-            error => console.error('Error: ' + error[0]),
-            () => {
-
-            }
-        );
-
-        // this.newView['projectID'] = this.id;
-        // this.viewService.setView(this.newView).subscribe(
+    private createView() {
+        // var screenshotObj = {
+        //     url: this.newView.screenshotURL,
+        //     projectID: this.id,
+        //     file: 'sc'
+        // }
+        //
+        // this.screenshotService.make(screenshotObj).subscribe(
         //     data => {
-        //         this.viewsOfProject.push(this.newView);
-        //         this.winVisible = !this.winVisible;
+        //         console.log(data);
         //     },
         //     error => console.error('Error: ' + error[0]),
         //     () => {
         //
         //     }
         // );
+        this.isFormWorking = true;
+        this.newView['projectID'] = this.id;
+        this.viewService.setView(this.newView).subscribe(
+            data => {
+                this.viewsOfProject.push(this.newView);
+                this.isWinVisible = !this.isWinVisible;
+                this.isFormWorking = false;
+            },
+            error => console.error('Error: ' + error[0]),
+            () => {
+
+            }
+        );
     }
 
-    getData(id) {
+    private getProjectData(id) {
         this.projectService.getProject(id)
             .subscribe(
                 data => {
@@ -171,7 +189,7 @@ export class ProjectSingleComponent {
             screenshotURL: ''
         };
 
-        this.getData(this.id);
+        this.getProjectData(this.id);
         this.getViewsOfProject(this.id);
         this.getUsers();
     }

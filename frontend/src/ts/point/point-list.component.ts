@@ -36,7 +36,7 @@ import {PointService} from "./point.service";
                     <td>{{point.isOpened}}</td>
                     <td>{{point.isDeleted}}</td>
                     
-                    <td><a href="" class="button alert">Delete</a></td>
+                    <td><a href="" class="button alert" (click)="removePoint($event)" data-id="{{point._id}}">Delete</a></td>
                     <td><a href="" class="button">Edit</a></td>
                 </tr>
             </tbody>
@@ -50,7 +50,7 @@ export class PointListComponent {
 
     }
 
-    getViews() {
+    getPoints() {
         this.pointService.getPoints()
             .subscribe(
                 data => {
@@ -65,8 +65,25 @@ export class PointListComponent {
             )
     }
 
+    removePoint(e) {
+        e.preventDefault();
+        this.pointService.removePoint(e.currentTarget.dataset.id)
+            .subscribe(
+                data => {
+                    // console.log(data);
+                    this.points = data;
+                    // this.lsPoints = this.points;
+                },
+                error => console.error('Error: ' + error[0]),
+                () => {
+                    // console.log("Data loaded!")
+                }
+            )
+    }
+
+
 
     ngOnInit() {
-        this.getViews();
+        this.getPoints();
     }
 }

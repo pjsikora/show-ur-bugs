@@ -33,9 +33,6 @@ import {
                 <li>
                     <a [routerLink]="['Projects']">Projects</a>
                 </li>
-                <li>
-                    <a [routerLink]="['ProjectForm']">Project form</a>
-                </li>
             </ul>
           </nav>
           <router-outlet></router-outlet>

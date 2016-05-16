@@ -38,6 +38,23 @@ var express = require('express'),
 //
 
 
+
+function listAllUndeleted(req, res) {
+    Project.find({isDeleted: false}, function (err, points) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(points);
+        }
+    });
+}
+
+// http://localhost:8091/api/projects/
+router.get('/', listAllUndeleted);
+router.post('/', listAllUndeleted);
+
+
+
 function listAll(req, res) {
     Project.find({}, function (err, points) {
         if (err) {
@@ -48,18 +65,9 @@ function listAll(req, res) {
     });
 }
 
-function listAllUndeleted(req, res) {
-    Project.find({}, function (err, points) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(points);
-        }
-    });
-}
-
-router.get('/', listAll);
-router.post('/', listAll);
+// http://localhost:8091/api/projects/all
+router.get('/all', listAll);
+router.post('/all', listAll);
 
 function readProject(req, res) {
     var id = req.query.id || req.body.id;
@@ -93,7 +101,7 @@ function create(req, res) {
     });
 }
 
-// http://localhost:8090/projects/create?name=ProjectName&createdBy=User&isOpened=false
+// http://localhost:8091/api/projects/create?name=ProjectName&createdBy=User&isOpened=false
 router.get('/create', create);
 router.post('/create', create);
 
