@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
 var morgan   = require('morgan');
 var router = express.Router();
+
 // Load database configuration
 var config = require('./config');
 
@@ -37,92 +38,46 @@ app.set('secret', 'fedojo_supersecret');
  * @param res
  * @url users/login
  */
-function login(req, res) {
-    var response = {},
-        login = req.query.login || req.body.login;
 
-    console.log(login);
+// router.use(function(req, res, next) {
+//
+//     // check header or url parameters or post parameters for token
+//     var token = req.body.token || req.query.token || req.headers['x-access-token'];
+//
+//     // decode token
+//     if (token) {
+//
+//         // verifies secret and checks exp
+//         jwt.verify(token, 'secretKey', function(err, decoded) {
+//             if (err) {
+//                 return res.json({ success: false, message: 'Failed to authenticate token.' });
+//             } else {
+//                 // if everything is good, save to request for use in other routes
+//                 req.decoded = decoded;
+//                 next();
+//             }
+//         });
+//
+//     } else {
+//
+//         // if there is no token
+//         // return an error
+//         return res.status(403).send({
+//             success: false,
+//             message: 'No token provided.'
+//         });
+//
+//     }
+// });
 
-    if (typeof login === "undefined") {
-        console.log(login);
-    } else {
-        User.findOne({login: login}, function(err, user) {
-            console.log(user);
+var allRoutes = require('./app/routes');
 
-            if (err) {
-                response = {
-                    status: "ERROR",
-                    msg: err
-                };
-
-                res.json(response);
-            } else {
-                if (user == null) {
-                    response = {
-                        status: "ERROR",
-                        msg: "User not found"
-                    };
-
-                    res.json(response);
-                } else {
-                    var token = jwt.sign({ user: user, expiresInMinutes: 1440}, 'secretKey');
-
-                    response = {
-                        status: "OK",
-                        token: token
-                    };
-
-                    res.json(response);
-                }
-
-            }
-
-
-        });
-    }
-}
-
-// Authentication
-router.get('/login', login);
-router.post('/login', login);
-
-router.use(function(req, res, next) {
-
-    // check header or url parameters or post parameters for token
-    var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
-    // decode token
-    if (token) {
-
-        // verifies secret and checks exp
-        jwt.verify(token, 'secretKey', function(err, decoded) {
-            if (err) {
-                return res.json({ success: false, message: 'Failed to authenticate token.' });
-            } else {
-                // if everything is good, save to request for use in other routes
-                req.decoded = decoded;
-                next();
-            }
-        });
-
-    } else {
-
-        // if there is no token
-        // return an error
-        return res.status(403).send({
-            success: false,
-            message: 'No token provided.'
-        });
-
-    }
-});
-
-
-var routerPoints = require('./app/routes/points.js');
-var routerProjects = require('./app/routes/projects.js');
-var routerViews = require('./app/routes/views.js');
-var routerUsers = require('./app/routes/users.js');
-var routerScreenshots = require('./app/routes/screenshots.js');
+app.use('/api', allRoutes);
+// var routerPoints = require('./app/routes/points.js');
+// var routerProjects = require('./app/routes/projects.js');
+// var routerViews = require('./app/routes/views.js');
+// var routerUsers = require('./app/routes/users.js');
+// var routerScreenshots = require('./app/routes/screenshots.js');
 
 // Define port
 // var port = process.env.PORT || 8080;
@@ -145,16 +100,16 @@ else {
 app.use(express.static('./frontend/public'));
 
 // Check domain
-app.get('/checker', function(req, res) {
-    res.json({ domain: req.headers.host });
-});
+// app.get('/checker', function(req, res) {
+//     res.json({ domain: req.headers.host });
+// });
 
 // Routes
-app.use('/api/users', routerUsers);
-app.use('/api/points', routerPoints);
-app.use('/api/projects', routerProjects);
-app.use('/api/views', routerViews);
-app.use('/api/screenshots', routerScreenshots);
+// app.use('/api/users', routerUsers);
+// app.use('/api/points', routerPoints);
+// app.use('/api/projects', routerProjects);
+// app.use('/api/views', routerViews);
+// app.use('/api/screenshots', routerScreenshots);
 
 //
 app.listen(port, function () {

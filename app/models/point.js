@@ -3,6 +3,7 @@ var Schema       = mongoose.Schema;
 
 var PointSchema   = new Schema({
     name: String,
+    description: String,
     x: {
         type: Number,
         required: true
@@ -16,7 +17,8 @@ var PointSchema   = new Schema({
         default: Date.now
     },
     createdBy: {
-        type: String
+        type: String,
+        required: true
     },
     editDates: [{
         authorID: String,

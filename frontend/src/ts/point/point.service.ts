@@ -22,6 +22,10 @@ export class PointService {
         return this.makeRequest(this.apiUrl, {});
     }
 
+    getPointsOfView(viewID) {
+        return this.makeRequest(this.apiUrl+'read', {viewID: viewID});
+    }
+
     setPoint(point) {
         return this.makeRequest(this.apiUrl+'create', point);
     }
@@ -33,5 +37,15 @@ export class PointService {
     removePoint(id) {
         return this.makeRequest(this.apiUrl+'delete', id);
     }
+
+    // makeRequest(model, type, object) {
+    //     var headers = new Headers(),
+    //         requestURL = model + '/' + type;
+    //     headers.append('Content-Type', 'application/json');
+    //
+    //
+    //     return this.http.post(requestURL, JSON.stringify(object), {headers: headers})
+    //         .map(response => response.json());
+    // }
 
 }
