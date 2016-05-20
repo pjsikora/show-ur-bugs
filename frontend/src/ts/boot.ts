@@ -7,10 +7,8 @@ import {ROUTER_PROVIDERS,
     HashLocationStrategy} from "angular2/router";
 
 import {AppComponent} from "./app.component";
-import {AppService} from "./app.service";
 
 bootstrap(AppComponent, [
-    AppService,
     HTTP_PROVIDERS,
     ROUTER_PROVIDERS,
     provide(LocationStrategy, {useClass: HashLocationStrategy})

@@ -27,6 +27,7 @@
     "morgan": "^1.7.0",
     "phantom": "^2.0.10",
     "phantomjs": "^2.1.7",
+    "socket.io": "^1.4.6",
     "webshot": "^0.18.0"
   },
   "devDependencies": {

@@ -3,7 +3,7 @@ var express = require('express'),
     users = require('./controllers/users'),
     views = require('./controllers/views'),
     points = require('./controllers/points'),
-    screenshots = require('./controllers/screenshots'),
+    // screenshots = require('./controllers/screenshots'),
     projects = require('./controllers/projects');
 
 
@@ -43,17 +43,17 @@ router.post('/login', users.login);
 //     }
 // });
 
-router.get('/', users.getAll);
-router.get('/create', users.create);
-router.get('/read', users.read);
-router.get('/update', users.update);
-router.get('/delete', users.delete);
+router.get('/users/', users.getAll);
+router.get('/users/create', users.create);
+router.get('/users/read', users.read);
+router.get('/users/update', users.update);
+router.get('/users/delete', users.delete);
 
-router.post('/', users.getAll);
-router.post('/create', users.create);
-router.post('/read', users.read);
-router.post('/update', users.update);
-router.post('/delete', users.delete);
+router.post('/users/', users.getAll);
+router.post('/users/create', users.create);
+router.post('/users/read', users.read);
+router.post('/users/update', users.update);
+router.post('/users/delete', users.delete);
 
 
 
@@ -114,10 +114,10 @@ router.post('/views/delete', views.viewDelete);
 
 
 
-router.get('/screenshots/create', screenshots.create);
-router.get('/screenshots/read', screenshots.read);
-
-router.post('/screenshots/create', screenshots.create);
-router.post('/screenshots/read', screenshots.read);
+// router.get('/screenshots/create', screenshots.create);
+// router.get('/screenshots/read', screenshots.read);
+//
+// router.post('/screenshots/create', screenshots.create);
+// router.post('/read', screenshots.read);
 
 module.exports = router;

@@ -1,5 +1,10 @@
 var express = require('express');
 var app = express();
+
+// var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
 var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
 var morgan   = require('morgan');
@@ -26,63 +31,25 @@ app.use(function(req, res, next) {
     next();
 });
 
+// var renderIndex = function(req, res) {
+//     res.sendFile(path.resolve(__dirname, 'index.html'));
+// }
+//
+// app.get('/*', renderIndex);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 app.set('secret', 'fedojo_supersecret');
-// Routes
-/**
- *
- * @param req
- * @param res
- * @url users/login
- */
 
-// router.use(function(req, res, next) {
-//
-//     // check header or url parameters or post parameters for token
-//     var token = req.body.token || req.query.token || req.headers['x-access-token'];
-//
-//     // decode token
-//     if (token) {
-//
-//         // verifies secret and checks exp
-//         jwt.verify(token, 'secretKey', function(err, decoded) {
-//             if (err) {
-//                 return res.json({ success: false, message: 'Failed to authenticate token.' });
-//             } else {
-//                 // if everything is good, save to request for use in other routes
-//                 req.decoded = decoded;
-//                 next();
-//             }
-//         });
-//
-//     } else {
-//
-//         // if there is no token
-//         // return an error
-//         return res.status(403).send({
-//             success: false,
-//             message: 'No token provided.'
-//         });
-//
-//     }
-// });
 
+// Set routes
 var allRoutes = require('./app/routes');
 
 app.use('/api', allRoutes);
-// var routerPoints = require('./app/routes/points.js');
-// var routerProjects = require('./app/routes/projects.js');
-// var routerViews = require('./app/routes/views.js');
-// var routerUsers = require('./app/routes/users.js');
-// var routerScreenshots = require('./app/routes/screenshots.js');
 
 // Define port
-// var port = process.env.PORT || 8080;
+// var port = process.env.PORT || 8091;
 var port = 8091;
-
 
 //console.log(process.env.ENV_VARIABLE);
 
@@ -95,23 +62,15 @@ else {
 }
 
 
-
 // Public / static folder
-app.use(express.static('./frontend/public'));
+app.use(express.static('./frontend/ng2cli/dist'));
 
-// Check domain
-// app.get('/checker', function(req, res) {
-//     res.json({ domain: req.headers.host });
-// });
 
-// Routes
-// app.use('/api/users', routerUsers);
-// app.use('/api/points', routerPoints);
-// app.use('/api/projects', routerProjects);
-// app.use('/api/views', routerViews);
-// app.use('/api/screenshots', routerScreenshots);
 
-//
+io.on('connection', function(socket){
+    console.log('a user connected');
+});
+
 app.listen(port, function () {
     console.log('Lets rock on port '+port+'!');
 });

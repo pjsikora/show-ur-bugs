@@ -130,8 +130,7 @@ export class ViewComponent {
                     // TODO Synchronize with localstorage
                     console.log(data);
                     this.points.push(point);
-                    this.closeWindow();
-
+                    this.closeWindow(null);
                 },
                 error => console.log('Error: ' + error[0]),
                 () => {}

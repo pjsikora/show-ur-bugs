@@ -1,0 +1,27 @@
+<div class="screenshotView" style="position: relative;" (click)="showWindow($event)">
+    <div *ngFor="#point of points" class="point" style=" top: {{point.y}}; left: {{point.x}}"></div>
+    <img src="/img/ND.jpg" alt="">
+</div>
+<div class="rightMenu">
+    <div *ngFor="let point of points" style="" (click)="rightMenuShowDetails()">
+        <div class="point__catcher">{{point.name}}</div>
+        <div class="point__details">
+            <p>x:{{point.x}} y:{{point.y}}</p>
+            <p>description: {{point.description}}</p>
+            <p>author: {{point.createdBy}}</p>
+            <p>date: {{point.createDate}}</p>
+            <p>isOpened: {{point.isOpened}}</p>
+        </div>
+        <button class="button success" (click)="updatePoint($event)" attr.data-id="{{point._id}}">Edit</button>
+        <button class="button alert" (click)="deletePoint($event)" attr.data-id="{{point._id}}">Delete</button>
+        <button class="button" (click)="closePoint($event)" attr.data-id="{{point._id}}">Close</button>
+    </div>
+</div>
+<div class="window__overlay" [style.display]="isWinVisible ? 'block' : 'none'">
+    <div class="window__content">
+        <div class="window__close" (click)="closeWindow($event)">close</div>
+        <input type="text" placeholder="Name" [(ngModel)]="nameOfPoint">
+        <textarea name="" id="" cols="30" rows="10" placeholder="Description" [(ngModel)]="descOfPoint"></textarea>
+        <button (click)="createPoint()" class="button">Add point</button>
+    </div>
+</div>

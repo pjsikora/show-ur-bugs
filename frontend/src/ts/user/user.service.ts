@@ -32,4 +32,8 @@ export class UserService {
     removeUser(id) {
         return this.makeRequest(this.apiUrl+'delete', id);
     }
+
+    login(userObject) {
+        return this.makeRequest(this.apiUrl + 'login', userObject);
+    }
 }

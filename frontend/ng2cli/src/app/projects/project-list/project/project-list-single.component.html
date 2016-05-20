@@ -1,0 +1,26 @@
+<div class="project">
+    <div class="row">
+        <div class="medium-7 column">
+            <a href="/#/project/{{project._id}}">{{project.name}}</a>
+        </div>
+        <div class="medium-4 column">
+            <a href="" class="button tiny alert" (click)="removeProject($event)">Delete</a>
+            <a href="" class="button tiny" (click)="editProject($event)">Edit</a>
+            <a *ngIf="project.isOpened" href="" class="button tiny success" (click)="closeProject($event)">Close</a>
+            <a *ngIf="!project.isOpened" href="" class="button tiny warning" (click)="openProject($event)">Open</a>
+
+            <a href="" class="button tiny secondary" (click)="showDetails($event)">Details</a>
+        </div>
+    </div>
+
+    <div class="row" [style.display]="isVisible ? 'block' : 'none'">
+        <div class="medium-12 column">
+            <p><strong>_id:</strong> {{project._id}}</p>
+            <p><strong>createDate:</strong> {{project.createDate}}</p>
+            <p><strong>description:</strong> {{project.description}}</p>
+            <p><strong>createdBy:</strong> {{project.createdBy}}</p>
+            <p><strong>isOpened:</strong> {{project.isOpened}}</p>
+            <p><strong>isDeleted:</strong> {{project.isDeleted}}</p>
+        </div>
+    </div>
+</div>

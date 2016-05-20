@@ -66,15 +66,4 @@ var screenshots = {
 }
 
 
-/**
- * @url-in-browser /api/screenshots/create?url=google.com&file=file&directory=directory
- */
-
-
-/**
- * @url-in-browser /api/screenshots/read?group=group&project=directory&view=file2.png
- */
-
-
-
 module.exports = screenshots;

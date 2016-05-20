@@ -1,0 +1,33 @@
+<table>
+    <thead>
+    <tr>
+        <td>_id</td>
+        <td>login</td>
+        <td>email</td>
+
+        <td>password</td>
+        <td>createDate</td>
+        <td>isDeleted</td>
+        <td>deleteDate</td>
+
+        <td></td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+        <td>{{user._id}}</td>
+        <td>{{user.login}}</td>
+        <td>{{user.email}}</td>
+
+        <td>{{user.password}}</td>
+        <td>{{user.createDate}}</td>
+        <td>{{user.isDeleted}}</td>
+        <td>{{user.deleteDate}}</td>
+
+
+        <td><a href="" class="button alert">Delete</a></td>
+        <td><a href="" class="button">Edit</a></td>
+    </tr>
+    </tbody>
+</table>
