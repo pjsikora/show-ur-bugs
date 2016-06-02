@@ -41,5 +41,3 @@ Screenshots:
 /api/screenshots/create?url=google.com&file=file&directory=directory
 /api/screenshots/read?group=group&project=directory&view=file2.png
 ```
-
-+44 7530 634 778
