@@ -2,6 +2,7 @@ import 'rxjs/add/operator/map';
 import {Component, OnInit} from '@angular/core';
 import {ProjectService} from "../../shared";
 import {ProjectListSingleComponent} from "./project/project-list-single.component";
+import {FilterData} from "../../filter-data.pipe";
 
 @Component({
     moduleId: module.id,
@@ -9,9 +10,11 @@ import {ProjectListSingleComponent} from "./project/project-list-single.componen
     selector: 'app-project-list',
     templateUrl: 'project-list.component.html',
     styleUrls: ['project-list.component.css'],
-    directives: [ProjectListSingleComponent]
+    directives: [ProjectListSingleComponent],
+    pipes: [FilterData]
 
 })
+
 export class ProjectListComponent implements OnInit {
     projects;
 

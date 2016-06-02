@@ -1,5 +1,7 @@
 <a class="button" href="/#/project/form">Add new project</a>
 <h2>Projects list</h2>
-<div>
-    <project-list-single *ngFor="let project of projects" [project]="project" class="project"></project-list-single>
-</div>
+<input type="text" #filter (keyup)="0">
+
+<project-list-single *ngFor="let project of (projects | filterData: filter.value)"
+                         [project]="project"
+                         class="project"></project-list-single>

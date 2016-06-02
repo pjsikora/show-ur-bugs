@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {RouteParams} from '@angular/router-deprecated/index';
+import {CanDeactivate, OnActivate, Router, RouteSegment} from '@angular/router';
+// import {RouteParams} from '@angular/router-deprecated/index';
 import {
     ViewModel,
     ViewService,
@@ -30,12 +31,14 @@ export class ProjectSingleComponent {
 
     private viewsOfProject = new Array();
 
-    constructor(params:RouteParams,
+    constructor(
+        curr: RouteSegment,
+        // params:RouteParams,
                 public projectService:ProjectService,
                 public userService:UserService,
                 public viewService:ViewService) {
-
-        this.id = params.get('id');
+        this.id = curr.getParam('id');
+        // this.id = params.get('id');
         console.log(this.id);
     }
 

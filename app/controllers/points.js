@@ -52,6 +52,30 @@ var points = {
         });
     },
 
+    close: function(req, res) {
+        var query = { _id: req.body._id },
+            newData = { isOpened: false };
+        
+        points.update(query, newData, res);
+    },
+
+    open: function(req, res) {
+        var query = { _id: req.body._id },
+            newData = { isOpened: true };
+
+        points.update(query, newData, res);
+    },
+
+    update: function(query, newData, res) {
+        Point.findOneAndUpdate(query, newData, {upsert: true}, function(err, doc){
+            if (err) {
+                return res.json({status: "ERROR", error: err.toString()});
+            } else {
+                return res.json({status: "OK", msg: "succesfully saved"});
+            }
+        })
+    },
+
     readUndeleted: function (req, res) {
         var viewID = req.query.viewID || req.body.viewID;
 

@@ -1,20 +1,42 @@
 <div class="screenshotView" style="position: relative;" (click)="showWindow($event)">
-    <div *ngFor="#point of points" class="point" style=" top: {{point.y}}; left: {{point.x}}"></div>
+    <div *ngFor="let point of points"
+         class="point"
+         [style.top.px]="point.y"
+         [style.left.px]="point.x"
+         [style.opacity]="point.isOpened ? 1 : .5">{{point.x}}, {{point.y}}</div>
     <img src="/img/ND.jpg" alt="">
 </div>
 <div class="rightMenu">
-    <div *ngFor="let point of points" style="" (click)="rightMenuShowDetails()">
-        <div class="point__catcher">{{point.name}}</div>
-        <div class="point__details">
-            <p>x:{{point.x}} y:{{point.y}}</p>
-            <p>description: {{point.description}}</p>
-            <p>author: {{point.createdBy}}</p>
-            <p>date: {{point.createDate}}</p>
-            <p>isOpened: {{point.isOpened}}</p>
+    <div class="row">
+        <div class="medium-12 column">
+            <a href="" class="button tiny">Show opened</a>
         </div>
-        <button class="button success" (click)="updatePoint($event)" attr.data-id="{{point._id}}">Edit</button>
-        <button class="button alert" (click)="deletePoint($event)" attr.data-id="{{point._id}}">Delete</button>
-        <button class="button" (click)="closePoint($event)" attr.data-id="{{point._id}}">Close</button>
+    </div>
+    <div *ngFor="let point of points" style="border-bottom: 1px solid #000" (click)="rightMenuShowDetails()" [style.opacity]="point.isOpened ? 1 : .5">
+        <div class="row">
+            <div class="point__catcher medium-8 column">{{point.name}}</div>
+            <div class="medium-4 column">
+                <a href="" class="button secondary tiny">Details</a>
+            </div>
+        </div>
+        <div class="row details">
+            <div class="point__details medium-12 column">
+                <p><strong>x:</strong>{{point.x}} <strong>y:</strong>{{point.y}}</p>
+                <p><strong>description:</strong> {{point.description}}</p>
+                <p><strong>author:</strong> {{point.createdBy}}</p>
+                <p><strong>date:</strong> {{point.createDate}}</p>
+                <p><strong>isOpened:</strong> {{point.isOpened}}</p>
+            </div>
+            <div class="point__details medium-12 column">
+                <button class="button success tiny" (click)="updatePoint($event)" attr.data-id="{{point._id}}">Edit</button>
+                <button class="button alert tiny" (click)="deletePoint($event)" attr.data-id="{{point._id}}">Delete</button>
+
+                    <a *ngIf="point.isOpened" href="" class="button tiny" (click)="closePoint($event)" attr.data-id="{{point._id}}">Close</a>
+                <a *ngIf="!point.isOpened" href="" class="button tiny warning" (click)="openPoint($event)" attr.data-id="{{point._id}}">Open</a>
+
+            </div>
+        </div>
+
     </div>
 </div>
 <div class="window__overlay" [style.display]="isWinVisible ? 'block' : 'none'">

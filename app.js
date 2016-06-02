@@ -19,7 +19,7 @@ var config = require('./config');
 //app.use(express.urlencoded());
 //app.use(express.multipart());
 
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 
 app.use(bodyParser.json());
 

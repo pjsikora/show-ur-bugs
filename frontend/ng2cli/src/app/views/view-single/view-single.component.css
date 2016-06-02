@@ -5,9 +5,11 @@
     overflow: scroll;
     background: #fff;
     border-left: 1px solid #000;
-    padding: 10px;
-    width: 200px;
+    width: 300px;
     height: 100%
+}
+.rightMenu p {
+    font-size: 10px;
 }
 
 .rightMenu .point__details.active {

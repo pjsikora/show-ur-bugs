@@ -42,11 +42,19 @@ export class ViewService {
     return this.makeRequest('/api/points', {});
   }
 
+  closePoint(id) {
+    return this.makeRequest('/api/points/close', id);
+  }
+  
+  openPoint(id) {
+    return this.makeRequest('/api/points/open', id);
+  }
+
   setPoint(point) {
     return this.makeRequest('/api/points/create', point);
   }
 
-  updatePoint(point, data) {
+  updatePoint(data) {
     return this.makeRequest('/api/points/update', data);
   }
 
