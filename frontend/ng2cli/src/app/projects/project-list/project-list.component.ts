@@ -26,14 +26,9 @@ export class ProjectListComponent implements OnInit {
         this.projectService.getProjects()
             .subscribe(
                 data => {
-                    // console.log(data);
                     this.projects = data;
-                    // this.lsPoints = this.points;
                 },
-                error => console.error('Error: ' + error[0]),
-                () => {
-                    // console.log("Data loaded!")
-                }
+                error => console.error('Error: ' + error[0])
             )
     }
 
