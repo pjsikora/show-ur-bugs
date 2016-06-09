@@ -1,11 +1,8 @@
 # Running
 
-To run the project you will need to
 ```
-node app.js
-
+gulp
 ```
-
 
 
 ## Kill process on port
