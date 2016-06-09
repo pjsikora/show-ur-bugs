@@ -1,3 +1,4 @@
+<a href="/#/users/form" class="button">Add user</a>
 <table>
     <thead>
     <tr>
@@ -17,7 +18,7 @@
     <tbody>
     <tr *ngFor="let user of users">
         <td>{{user._id}}</td>
-        <td>{{user.login}}</td>
+        <td><a href="/#/users/{{user._id}}">{{user.login}}</a></td>
         <td>{{user.email}}</td>
 
         <td>{{user.password}}</td>

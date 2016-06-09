@@ -26,13 +26,10 @@ export class ViewSingleComponent {
     newX;
     newY;
 
-    // newPoint: PointModel;
-
     constructor(params:RouteSegment,
                 public viewService:ViewService,
                 public pointService:PointService) {
         this.id = params.getParam('id');
-        console.log(this.id);
     }
 
     getPoints() {
@@ -42,7 +39,6 @@ export class ViewSingleComponent {
             this.points = this.lsPoints;
         }
 
-        // this.httpReq.makeRequest('points', '',  null)
         this.pointService.getPointsOfView(this.id)
             .subscribe(
                 data => {

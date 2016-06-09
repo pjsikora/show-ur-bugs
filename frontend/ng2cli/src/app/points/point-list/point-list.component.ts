@@ -2,13 +2,15 @@ import 'rxjs/add/operator/map'
 
 import {Component, OnInit} from '@angular/core';
 import {PointService} from '../../shared';
+import {FilterData} from "../../filter-data.pipe";
 
 @Component({
     moduleId: module.id,
     bindings: [PointService],
     selector: 'app-point-list',
     templateUrl: 'point-list.component.html',
-    styleUrls: ['point-list.component.css']
+    styleUrls: ['point-list.component.css'],
+    pipes: [FilterData]
 })
 export class PointListComponent implements OnInit {
     points;

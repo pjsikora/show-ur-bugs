@@ -7,6 +7,7 @@ import {
     UserService,
     ProjectService
 } from '../../shared';
+import {FilterData} from '../../filter-data.pipe'
 
 
 @Component({
@@ -14,7 +15,8 @@ import {
     selector: 'app-project-single',
     templateUrl: 'project-single.component.html',
     styleUrls: ['project-single.component.css'],
-    bindings: [ProjectService, ViewService, UserService]
+    bindings: [ProjectService, ViewService, UserService],
+    pipes: [FilterData]
 })
 
 

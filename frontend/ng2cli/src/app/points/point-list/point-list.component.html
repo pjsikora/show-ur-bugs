@@ -1,14 +1,13 @@
+<input type="text" #filter keyup="0">
 <table>
     <thead>
     <tr>
         <td>name</td>
         <td>x</td>
         <td>y</td>
-        <!--<td>projectID</td>-->
-
+        <td>viewID</td>
         <td>createDate</td>
         <td>createdBy</td>
-        <!--<td>deletedDate</td>-->
         <td>isOpened</td>
         <td>isDeleted</td>
         <td></td>
@@ -16,15 +15,14 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let point of points">
+    <tr *ngFor="let point of ( points | filterData: filter.value)">
         <td>{{point.name}}</td>
         <td>{{point.x}}</td>
         <td>{{point.y}}</td>
-        <!--<td>{{point.projectID}}</td>-->
+        <td><a href="/#/view/{{point.viewID}}">{{point.viewID}}</a></td>
 
         <td>{{point.createDate}}</td>
         <td>{{point.createdBy}}</td>
-        <!--<td>{{point.deletedDate}}</td>-->
         <td>{{point.isOpened}}</td>
         <td>{{point.isDeleted}}</td>
 

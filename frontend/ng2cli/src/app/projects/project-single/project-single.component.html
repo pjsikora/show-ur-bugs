@@ -11,6 +11,7 @@
     <p>No views</p>
 </div>
 
+<input type="text" #filter keyup="0">
 <table *ngIf="viewsOfProject.length > 0">
     <thead>
     <tr>
@@ -21,7 +22,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let view of viewsOfProject">
+    <tr *ngFor="let view of (viewsOfProject | filterData: filter.value) ">
         <td><a href="/#/view/{{view._id}}">{{view.name}}</a></td>
         <td><a href="/#/view/{{view._id}}">{{view.isDeleted}}</a></td>
         <td><a href="" class="button alert" (click)="deleteProject($event)" data-id="">Delete</a></td>

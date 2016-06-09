@@ -5,7 +5,7 @@ import {Routes, Router, ROUTER_DIRECTIVES} from '@angular/router';
 
 import {ViewListComponent} from './views/view-list.component';
 import {ViewSingleComponent} from './views/view-single/index';
-import {UserListComponent} from './users/user-list/index';
+import {UserListComponent,UserFormComponent, UserSingleComponent} from './users/index';
 import {PointListComponent} from './points/point-list/index';
 import {ProjectListComponent, ProjectFormComponent, ProjectSingleComponent} from './projects/index';
 
@@ -20,23 +20,17 @@ import {ProjectListComponent, ProjectFormComponent, ProjectSingleComponent} from
 @Routes([
     {path: '/view/:id', component: ViewSingleComponent},
     {path: '/views', component: ViewListComponent},
+
     {path: '/users', component: UserListComponent},
+    {path: '/users/form', component: UserFormComponent},
+    {path: '/user/:id', component: UserSingleComponent},
+
     {path: '/points', component: PointListComponent},
     {path: '/projects', component: ProjectListComponent},
     {path: '/project/:id', component: ProjectSingleComponent},
-    {path: '/project/form', component: ProjectFormComponent}
+    {path: '/projects/form', component: ProjectFormComponent}
 ])
 
-// @RouteConfig([
-//   {path:'/view/:id', name: 'View', component: ViewSingleComponent},
-//   // {path:'/view:id', name: 'View', component: ViewComponent},
-//   {path:'/views',        name: 'Views',       component: ViewListComponent},
-//   {path:'/users',        name: 'Users',       component: UserListComponent},
-//   {path:'/points',        name: 'Points',       component: PointListComponent},
-//   {path:'/projects',        name: 'Projects',       component: ProjectListComponent},
-//   {path:'/project/:id',        name: 'ProjectsSingle',       component: ProjectSingleComponent},
-//   {path:'/project/form',        name: 'ProjectForm',       component: ProjectFormComponent},
-// ])
 export class Ng2cliAppComponent {
     title = 'ng2cli works!';
 
@@ -46,3 +40,4 @@ export class Ng2cliAppComponent {
 
     ngOnInit() {}
 }
+
