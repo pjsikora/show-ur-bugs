@@ -12,6 +12,7 @@ var router = express.Router();
 
 // Load database configuration
 var config = require('./config');
+var allRoutes = require('./app/routes');
 
 
 
@@ -19,7 +20,7 @@ var config = require('./config');
 //app.use(express.urlencoded());
 //app.use(express.multipart());
 
-// app.use(morgan('dev'));
+app.use(morgan('dev'));
 
 app.use(bodyParser.json());
 
@@ -43,8 +44,6 @@ app.set('secret', 'fedojo_supersecret');
 
 
 // Set routes
-var allRoutes = require('./app/routes');
-
 app.use('/api', allRoutes);
 
 // Define port

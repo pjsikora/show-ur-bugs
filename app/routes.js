@@ -1,10 +1,13 @@
 var express = require('express'),
+    app = express(),
     router = express.Router(),
     users = require('./controllers/users'),
     views = require('./controllers/views'),
     points = require('./controllers/points'),
     // screenshots = require('./controllers/screenshots'),
     projects = require('./controllers/projects');
+
+var usersRoutes = require('./routes/users');
 
 
 
@@ -43,11 +46,13 @@ router.post('/login', users.login);
 //     }
 // });
 
-router.get('/users/', users.getAll);
-router.get('/users/create', users.create);
-router.get('/users/read', users.read);
-router.get('/users/update', users.update);
-router.get('/users/delete', users.delete);
+// app.use('/api/users', usersRoutes);
+
+// router.get('/users/', users.getAll);
+// router.get('/users/create', users.create);
+// router.get('/users/read', users.read);
+// router.get('/users/update', users.update);
+// router.get('/users/delete', users.delete);
 
 router.post('/users/', users.getAll);
 router.post('/users/create', users.create);
@@ -59,13 +64,13 @@ router.post('/users/delete', users.delete);
 
 
 
-router.get('/points/', points.listAll);
-router.get('/points/all', points.listAllUndeleted);
-router.get('/points/create', points.create);
-router.get('/points/readall', points.read);
-router.get('/points/close', points.close);
-router.get('/points/read', points.readUndeleted);
-router.get('/points/delete', points.deleteItem);
+// router.get('/points/', points.listAll);
+// router.get('/points/all', points.listAllUndeleted);
+// router.get('/points/create', points.create);
+// router.get('/points/readall', points.read);
+// router.get('/points/close', points.close);
+// router.get('/points/read', points.readUndeleted);
+// router.get('/points/delete', points.deleteItem);
 
 router.post('/points/', points.listAll);
 router.post('/points/all', points.listAllUndeleted);
