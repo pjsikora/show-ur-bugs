@@ -5,7 +5,8 @@ var User = require('../models/user.js'),
 var users = {
     login: function (req, res) {
         var response = {},
-            login = req.query.login || req.body.login;
+            login = req.body.login;
+            // login = req.query.login || req.body.login;
 
         console.log(login);
 
@@ -73,9 +74,13 @@ var users = {
         var user = new User(),
             returnObj = {};
 
-        user.login = req.query.login || req.body.login;
-        user.password = req.query.password || req.body.password;
-        user.email = req.query.email || req.body.email;
+        // user.login = req.query.login || req.body.login;
+        // user.password = req.query.password || req.body.password;
+        // user.email = req.query.email || req.body.email;
+        
+        user.login = req.body.login;
+        user.password = req.body.password;
+        user.email = req.body.email;
         //user.createDate = Date().now();
 
         console.log(Date().now);

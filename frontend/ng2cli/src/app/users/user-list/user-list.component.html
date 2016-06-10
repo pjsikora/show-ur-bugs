@@ -1,34 +1,30 @@
-<a href="/#/users/form" class="button">Add user</a>
-<table>
-    <thead>
-    <tr>
-        <td>_id</td>
-        <td>login</td>
-        <td>email</td>
+<div class="row">
+    <div class="medium-12 columns">
+        <h1>Users list</h1>
+    </div>
+</div>
 
-        <td>password</td>
-        <td>createDate</td>
-        <td>isDeleted</td>
-        <td>deleteDate</td>
+<div class="row">
+    <div class="medium-4 columns">
+        <a href="/#/users-form" class="button">Add user</a>
+    </div>
+    <div class="medium-8 columns">
+        <input type="text" placeholder="Search user" #filter keyup="0">
+    </div>
+</div>
 
-        <td></td>
-        <td></td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let user of users">
-        <td>{{user._id}}</td>
-        <td><a href="/#/users/{{user._id}}">{{user.login}}</a></td>
-        <td>{{user.email}}</td>
+<div class="row">
+    <div class="medium-4 columns"><strong>login</strong></div>
+    <div class="medium-4 columns"><strong>email</strong></div>
+    <div class="medium-4 columns text-right"><strong>actions</strong></div>
+</div>
 
-        <td>{{user.password}}</td>
-        <td>{{user.createDate}}</td>
-        <td>{{user.isDeleted}}</td>
-        <td>{{user.deleteDate}}</td>
-
-
-        <td><a href="" class="button alert">Delete</a></td>
-        <td><a href="" class="button">Edit</a></td>
-    </tr>
-    </tbody>
-</table>
+<div class="row" *ngFor="let user of users">
+    <div class="medium-4 columns"><a href="/#/users/{{user._id}}">{{user.login}}</a></div>
+    <div class="medium-4 columns">{{user.email}}</div>
+    <div class="medium-4 columns text-right">
+        <a href="" class="button alert tiny">Delete</a>
+        <a href="" class="button tiny">Edit</a>
+        <a href="" class="button tiny">Edit</a>
+    </div>
+</div>

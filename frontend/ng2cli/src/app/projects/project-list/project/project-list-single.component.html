@@ -3,7 +3,7 @@
         <div class="medium-7 column">
             <a href="/#/project/{{project._id}}">{{project.name}}</a>
         </div>
-        <div class="medium-4 column">
+        <div class="medium-4 column text-right  ">
             <a href="" class="button tiny alert" (click)="removeProject($event)">Delete</a>
             <a href="" class="button tiny" (click)="editProject($event)">Edit</a>
             <a *ngIf="project.isOpened" href="" class="button tiny success" (click)="closeProject($event)">Close</a>

@@ -22,7 +22,8 @@ var projects = {
     },
 
     readProject: function (req, res) {
-        var id = req.query.id || req.body.id;
+        // var id = req.query.id || req.body.id;
+        var id = req.body.id;
         console.log(id);
 
         Project.findOne({_id: id}, function (err, projects) {
@@ -37,9 +38,13 @@ var projects = {
     create: function (req, res) {
         var project = new Project();
 
-        project.name = req.query.name || req.body.name;
-        project.createdBy = req.query.createdBy || req.body.createdBy;
-        project.isOpened = req.query.isOpened || req.body.isOpened;
+        // project.name = req.query.name || req.body.name;
+        // project.createdBy = req.query.createdBy || req.body.createdBy;
+        // project.isOpened = req.query.isOpened || req.body.isOpened;
+
+        project.name = req.body.name;
+        project.createdBy = req.body.createdBy;
+        project.isOpened = req.body.isOpened;
 
         project.save(function (err) {
             if (err) {
@@ -51,23 +56,41 @@ var projects = {
     },
 
     update: function (req, res) {
-        var projectID = req.query._id || req.body._id,
+        // var projectID = req.query._id || req.body._id,
+        var projectID = req.body._id,
             newProjectData = {};
 
-        if (req.query.name || req.body.name) {
-            newProjectData.name = req.query.name || req.body.name;
+        // if (req.query.name || req.body.name) {
+        //     newProjectData.name = req.query.name || req.body.name;
+        // }
+        // if (req.query.description || req.body.description) {
+        //     newProjectData.description = req.query.description || req.body.description;
+        // }
+        // if (req.query.createDate || req.body.createDate) {
+        //     newProjectData.createDate = req.query.createDate || req.body.createDate;
+        // }
+        // if (req.query.createdBy || req.body.createdBy) {
+        //     newProjectData.createdBy = req.query.createdBy || req.body.createdBy;
+        // }
+        // if (req.query.isOpened || req.body.isOpened) {
+        //     newProjectData.isOpened = req.query.isOpened || req.body.isOpened;
+        // }
+
+
+        if (req.body.name) {
+            newProjectData.name = req.body.name;
         }
-        if (req.query.description || req.body.description) {
-            newProjectData.description = req.query.description || req.body.description;
+        if (req.body.description) {
+            newProjectData.description = req.body.description;
         }
-        if (req.query.createDate || req.body.createDate) {
-            newProjectData.createDate = req.query.createDate || req.body.createDate;
+        if (req.body.createDate) {
+            newProjectData.createDate = req.body.createDate;
         }
-        if (req.query.createdBy || req.body.createdBy) {
-            newProjectData.createdBy = req.query.createdBy || req.body.createdBy;
+        if (req.body.createdBy) {
+            newProjectData.createdBy = req.body.createdBy;
         }
-        if (req.query.isOpened || req.body.isOpened) {
-            newProjectData.isOpened = req.query.isOpened || req.body.isOpened;
+        if (req.body.isOpened) {
+            newProjectData.isOpened = req.body.isOpened;
         }
 
         var query = {_id: projectID},
@@ -97,7 +120,8 @@ var projects = {
     },
 
     projectDelete: function (req, res) {
-        var viewID = req.query._id || req.body._id,
+        // var viewID = req.query._id || req.body._id,
+        var viewID = req.body._id,
             query = {
                 _id: viewID
             },

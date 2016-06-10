@@ -1,33 +1,40 @@
-<input type="text" #filter keyup="0">
-<table>
-    <thead>
-    <tr>
-        <td>name</td>
-        <td>x</td>
-        <td>y</td>
-        <td>viewID</td>
-        <td>createDate</td>
-        <td>createdBy</td>
-        <td>isOpened</td>
-        <td>isDeleted</td>
-        <td></td>
-        <td></td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let point of ( points | filterData: filter.value)">
-        <td>{{point.name}}</td>
-        <td>{{point.x}}</td>
-        <td>{{point.y}}</td>
-        <td><a href="/#/view/{{point.viewID}}">{{point.viewID}}</a></td>
+<div class="row">
+    <div class="medium-12 columns">
+        <input type="text" #filter keyup="0">
+    </div>
+</div>
 
-        <td>{{point.createDate}}</td>
-        <td>{{point.createdBy}}</td>
-        <td>{{point.isOpened}}</td>
-        <td>{{point.isDeleted}}</td>
+<div class="row">
+    <div class="medium-4 columns">
+        <strong>Name</strong>
+    </div>
+    <div class="medium-4 columns">
+        <strong>ViewID</strong>
+    </div>
+    <div class="medium-4 columns">
+        <strong>Actions</strong>
+    </div>
+</div>
 
-        <td><a href="" class="button alert" (click)="removePoint($event)" data-id="{{point._id}}">Delete</a></td>
-        <td><a href="" class="button">Edit</a></td>
-    </tr>
-    </tbody>
-</table>
+<div class="row" *ngFor="let point of ( points | filterData: filter.value)">
+    <div class="medium-4 columns">
+        {{point.name}}
+    </div>
+    <div class="medium-4 columns">
+        <a href="/#/view/{{point.viewID}}">{{point.viewID}}</a>
+    </div>
+    <div class="medium-4 columns text-right">
+        <a href="" class="button alert tiny" (click)="removePoint($event)"
+           data-id="{{point._id}}">Delete</a>
+        <a href="" class="button tiny">Edit</a>
+    </div>
+    <!--<td>{{point.x}}</td>-->
+    <!--<td>{{point.y}}</td>-->
+
+    <!--<td>{{point.createDate}}</td>-->
+    <!--<td>{{point.createdBy}}</td>-->
+    <!--<td>{{point.isOpened}}</td>-->
+    <!--<td>{{point.isDeleted}}</td>-->
+
+
+</div>

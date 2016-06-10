@@ -3,22 +3,28 @@
          class="point"
          [style.top.px]="point.y"
          [style.left.px]="point.x"
-         [style.opacity]="point.isOpened ? 1 : .5">{{point.x}}, {{point.y}}</div>
+         [style.opacity]="point.isOpened ? 1 : .5">{{point.x}}, {{point.y}}
+    </div>
     <img src="/img/ND.jpg" alt="">
 </div>
+
 <div class="rightMenu">
     <div class="row">
         <div class="medium-12 column">
             <a href="" class="button tiny">Show opened</a>
         </div>
     </div>
-    <div *ngFor="let point of points" style="border-bottom: 1px solid #000" (click)="rightMenuShowDetails()" [style.opacity]="point.isOpened ? 1 : .5">
+    <div *ngFor="let point of points"
+         style="border-bottom: 1px solid #000"
+         (click)="rightMenuShowDetails()"
+         [style.opacity]="point.isOpened ? 1 : .5">
         <div class="row">
             <div class="point__catcher medium-8 column">{{point.name}}</div>
             <div class="medium-4 column">
                 <a href="" class="button secondary tiny">Details</a>
             </div>
         </div>
+
         <div class="row details">
             <div class="point__details medium-12 column">
                 <p><strong>x:</strong>{{point.x}} <strong>y:</strong>{{point.y}}</p>
@@ -28,17 +34,31 @@
                 <p><strong>isOpened:</strong> {{point.isOpened}}</p>
             </div>
             <div class="point__details medium-12 column">
-                <button class="button success tiny" (click)="updatePoint($event)" attr.data-id="{{point._id}}">Edit</button>
-                <button class="button alert tiny" (click)="deletePoint($event)" attr.data-id="{{point._id}}">Delete</button>
+                <button class="button success tiny"
+                        (click)="updatePoint($event)"
+                        attr.data-id="{{point._id}}">Edit
+                </button>
 
-                    <a *ngIf="point.isOpened" href="" class="button tiny" (click)="closePoint($event)" attr.data-id="{{point._id}}">Close</a>
-                <a *ngIf="!point.isOpened" href="" class="button tiny warning" (click)="openPoint($event)" attr.data-id="{{point._id}}">Open</a>
+                <button class="button alert tiny"
+                        (click)="deletePoint($event)"
+                        attr.data-id="{{point._id}}">Delete
+                </button>
 
+                <a *ngIf="point.isOpened" href=""
+                   class="button tiny"
+                   (click)="closePoint($event)"
+                   attr.data-id="{{point._id}}">Close</a>
+
+                <a *ngIf="!point.isOpened" href=""
+                   class="button tiny warning"
+                   (click)="openPoint($event)"
+                   attr.data-id="{{point._id}}">Open</a>
             </div>
         </div>
-
     </div>
 </div>
+
+
 <div class="window__overlay" [style.display]="isWinVisible ? 'block' : 'none'">
     <div class="window__content">
         <div class="window__close" (click)="closeWindow($event)">close</div>

@@ -1,6 +1,16 @@
-<a class="button" href="/#/project/form">Add new project</a>
-<h2>Projects list</h2>
-<input type="text" #filter (keyup)="0">
+<div class="row">
+    <div class="medium-12 columns">
+        <h2>Projects list</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="medium-4 columns"><a class="button" href="/#/projects-form">Add new project</a></div>
+    <div class="medium-8 columns"><input type="text" #filter (keyup)="0"></div>
+</div>
+
+
+
 
 <project-list-single *ngFor="let project of (projects | filterData: filter.value)"
                          [project]="project"

@@ -1,6 +1,4 @@
 import {Component} from '@angular/core';
-// import {Router, ROUTER_DIRECTIVES, Routes} from "@angular/router";
-// import {RouteParams, RouteConfig, ROUTER_DIRECTIVES, Router} from "@angular/router-deprecated";
 import {Routes, Router, ROUTER_DIRECTIVES} from '@angular/router';
 
 import {ViewListComponent} from './views/view-list.component';
@@ -22,13 +20,13 @@ import {ProjectListComponent, ProjectFormComponent, ProjectSingleComponent} from
     {path: '/views', component: ViewListComponent},
 
     {path: '/users', component: UserListComponent},
-    {path: '/users/form', component: UserFormComponent},
+    {path: '/users-form', component: UserFormComponent},
     {path: '/user/:id', component: UserSingleComponent},
 
     {path: '/points', component: PointListComponent},
     {path: '/projects', component: ProjectListComponent},
     {path: '/project/:id', component: ProjectSingleComponent},
-    {path: '/projects/form', component: ProjectFormComponent}
+    {path: '/projects-form', component: ProjectFormComponent}
 ])
 
 export class Ng2cliAppComponent {
@@ -40,4 +38,3 @@ export class Ng2cliAppComponent {
 
     ngOnInit() {}
 }
-

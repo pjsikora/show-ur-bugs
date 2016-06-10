@@ -26,12 +26,19 @@ var views = {
         var view = new View(),
             returnObj = {};
 
-        view.name = req.query.name || req.body.name;
-        view.screenshotURL = req.query.screenshotURL || req.body.screenshotURL;
-        view.description = req.query.description || req.body.description;
-        view.projectID = req.query.projectID || req.body.projectID;
-        view.createdBy = req.query.createdBy || req.body.createdBy;
-        view.isOpened = req.query.isOpened || req.body.isOpened || true;
+        // view.name = req.query.name || req.body.name;
+        // view.screenshotURL = req.query.screenshotURL || req.body.screenshotURL;
+        // view.description = req.query.description || req.body.description;
+        // view.projectID = req.query.projectID || req.body.projectID;
+        // view.createdBy = req.query.createdBy || req.body.createdBy;
+        // view.isOpened = req.query.isOpened || req.body.isOpened;
+
+        view.name = req.body.name;
+        view.screenshotURL = req.body.screenshotURL;
+        view.description = req.body.description;
+        view.projectID = req.body.projectID;
+        view.createdBy = req.body.createdBy;
+        view.isOpened = req.body.isOpened;
 
         //TODO check if ID of user exists
         //TODO check if ID of project exists
@@ -115,29 +122,52 @@ var views = {
     },
 
     viewUpdate: function (req, res) {
+        // var viewID = req.query._id || req.body._id,
         var viewID = req.query._id || req.body._id,
             newViewData = {};
 
-        if (req.query.screenshotURL || req.body.screenshotURL) {
-            newViewData.screenshotURL = req.query.screenshotURL || req.body.screenshotURL;
+        // if (req.query.screenshotURL || req.body.screenshotURL) {
+        //     newViewData.screenshotURL = req.query.screenshotURL || req.body.screenshotURL;
+        // }
+        // if (req.query.name || req.body.name) {
+        //     newViewData.name = req.query.name || req.body.name;
+        // }
+        // if (req.query.description || req.body.description) {
+        //     newViewData.description = req.query.description || req.body.description;
+        // }
+        // if (req.query.projectID || req.body.projectID) {
+        //     newViewData.projectID = req.query.projectID || req.body.projectID;
+        // }
+        // if (req.query.createDate || req.body.createDate) {
+        //     newViewData.createDate = req.query.createDate || req.body.createDate;
+        // }
+        // if (req.query.createdBy || req.body.createdBy) {
+        //     newViewData.createdBy = req.query.createdBy || req.body.createdBy;
+        // }
+        // if (req.query.isOpened || req.body.isOpened) {
+        //     newViewData.isOpened = req.query.isOpened || req.body.isOpened;
+        // }
+
+        if (req.body.screenshotURL) {
+            newViewData.screenshotURL = req.body.screenshotURL;
         }
-        if (req.query.name || req.body.name) {
-            newViewData.name = req.query.name || req.body.name;
+        if (rreq.body.name) {
+            newViewData.name = req.body.name;
         }
-        if (req.query.description || req.body.description) {
-            newViewData.description = req.query.description || req.body.description;
+        if (req.body.description) {
+            newViewData.description = req.body.description;
         }
-        if (req.query.projectID || req.body.projectID) {
-            newViewData.projectID = req.query.projectID || req.body.projectID;
+        if (req.body.projectID) {
+            newViewData.projectID = req.body.projectID;
         }
-        if (req.query.createDate || req.body.createDate) {
-            newViewData.createDate = req.query.createDate || req.body.createDate;
+        if (req.body.createDate) {
+            newViewData.createDate = req.body.createDate;
         }
-        if (req.query.createdBy || req.body.createdBy) {
-            newViewData.createdBy = req.query.createdBy || req.body.createdBy;
+        if (req.body.createdBy) {
+            newViewData.createdBy = req.body.createdBy;
         }
-        if (req.query.isOpened || req.body.isOpened) {
-            newViewData.isOpened = req.query.isOpened || req.body.isOpened;
+        if (req.body.isOpened) {
+            newViewData.isOpened = req.body.isOpened;
         }
 
         var query = {_id: viewID},
@@ -167,7 +197,8 @@ var views = {
     },
 
     viewDelete: function (req, res) {
-        var viewID = req.query._id || req.body._id,
+        // var viewID = req.query._id || req.body._id,
+        var viewID = req.body._id,
             query = {
                 _id: viewID
             },

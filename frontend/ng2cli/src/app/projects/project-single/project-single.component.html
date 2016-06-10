@@ -1,35 +1,51 @@
-<h2>Project: {{id}}</h2>
+<div class="row">
+    <div class="medium-12 columns"><h2>Project: {{id}}</h2></div>
+    <div class="medium-12 columns"><p>Project name: {{projectName}}</p></div>
 
-<p>project: {{id}}</p>
-<p>projectID: {{projectID}}</p>
-<p>projectName: {{projectName}}</p>
-<h4>Views</h4>
-
-<a class="button" (click)="showAddViewWindow()">Add View</a>
-
-<div *ngIf="viewsOfProject.length <= 0">
-    <p>No views</p>
+    <div class="medium-12 columns">
+        <h4>Views</h4>
+    </div>
 </div>
 
-<input type="text" #filter keyup="0">
-<table *ngIf="viewsOfProject.length > 0">
-    <thead>
-    <tr>
-        <th>name</th>
-        <th>isDeleted</th>
-        <th></th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let view of (viewsOfProject | filterData: filter.value) ">
-        <td><a href="/#/view/{{view._id}}">{{view.name}}</a></td>
-        <td><a href="/#/view/{{view._id}}">{{view.isDeleted}}</a></td>
-        <td><a href="" class="button alert" (click)="deleteProject($event)" data-id="">Delete</a></td>
-        <td><a href="" class="button" (click)="editProject($event)">Edit</a></td>
-    </tr>
-    </tbody>
-</table>
+
+<div *ngIf="viewsOfProject.length <= 0" class="row">
+    <div class="row">
+        <div class="medium-12 columns">
+            <p>No views</p>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="viewsOfProject.length > 0">
+    <div class="row">
+        <div class="medium-4 columns">
+            <a class="button" (click)="showAddViewWindow()">Add View</a>
+        </div>
+        <div class="medium-8 columns">
+            <input type="text" #filter keyup="0">
+        </div>
+    </div>
+    <div class="row">
+        <div class="medium-6 columns">
+            <strong>Name</strong>
+        </div>
+        <div class="medium-6 columns text-right">
+            <strong>Actions</strong>
+        </div>
+    </div>
+    <div class="row" *ngFor="let view of (viewsOfProject | filterData: filter.value) ">
+        <div class="medium-6 columns">
+            <a href="/#/view/{{view._id}}">{{view.name}}</a>
+        </div>
+        <div class="medium-6 columns text-right">
+            <a href="" class="button alert tiny" (click)="deleteProject($event)" data-id="">Delete</a>
+            <a href="" class="button tiny" (click)="editProject($event)">Edit</a>
+        </div>
+    </div>
+</div>
+
+
 <div class="overlay" [style.display]="isWinVisible ? 'block' : 'none'">
     <div class="window">
         <h5>View details</h5>
