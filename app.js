@@ -13,12 +13,6 @@ var router = express.Router();
 // Load database configuration
 var config = require('./config');
 
-
-
-//app.use(express.json());
-//app.use(express.urlencoded());
-//app.use(express.multipart());
-
 // app.use(morgan('dev'));
 
 app.use(bodyParser.json());
@@ -30,12 +24,6 @@ app.use(function(req, res, next) {
     }
     next();
 });
-
-// var renderIndex = function(req, res) {
-//     res.sendFile(path.resolve(__dirname, 'index.html'));
-// }
-//
-// app.get('/*', renderIndex);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -51,13 +39,10 @@ app.use('/api', allRoutes);
 // var port = process.env.PORT || 8091;
 var port = 8091;
 
-//console.log(process.env.ENV_VARIABLE);
-
 // Connect with database
 if (typeof(process.env.PORT) == "undefined") {
     mongoose.connect(config.databaseDEV);
-}
-else {
+} else {
     mongoose.connect(config.databasePROD);
 }
 

@@ -12,6 +12,7 @@ import {FilterData} from "../../filter-data.pipe";
     styleUrls: ['point-list.component.css'],
     pipes: [FilterData]
 })
+
 export class PointListComponent implements OnInit {
     points;
 

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="medium-12 columns">
-        <input type="text" #filter keyup="0">
+        <input type="text" #filter (keyup)="0">
     </div>
 </div>
 
@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<div class="row" *ngFor="let point of ( points | filterData: filter.value)">
+<div class="row" *ngFor="let point of (points | filterData: filter.value)">
     <div class="medium-4 columns">
         {{point.name}}
     </div>
@@ -35,6 +35,5 @@
     <!--<td>{{point.createdBy}}</td>-->
     <!--<td>{{point.isOpened}}</td>-->
     <!--<td>{{point.isDeleted}}</td>-->
-
 
 </div>

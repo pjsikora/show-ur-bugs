@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/map';
 import {Component, Input, OnInit} from '@angular/core';
-// import {ProjectService} from "../../../shared";
+import {ProjectService} from "../../../shared";
 
 @Component({
     moduleId: module.id,
@@ -11,9 +11,11 @@ import {Component, Input, OnInit} from '@angular/core';
 
 export class ProjectListSingleComponent implements OnInit {
     @Input('project') project;
-    isVisible;
+    public isVisible:boolean;
+    public id:string;
 
-    constructor() {
+
+    constructor(public projectService:ProjectService) {
 
     }
     showDetails(e) {
@@ -24,23 +26,65 @@ export class ProjectListSingleComponent implements OnInit {
     removeProject(e) {
         e.preventDefault();
         console.log("remove");
+
+        this.projectService.removeProject(this.id)
+            .subscribe(
+                data => {
+                    // console.log(data);
+                    // this.projects = data;
+                    // this.lsPoints = this.points;
+                },
+                error => console.error('Error: ' + error[0]),
+                () => {
+                    // console.log("Data loaded!")
+                }
+            )
     }
 
     editProject(e) {
         e.preventDefault();
-        console.log("edit");
+        console.log("edit "+this.id);
     }
 
     closeProject(e) {
         e.preventDefault();
-        console.log("close");
+        console.log("close "+this.id);
+
+        this.projectService.removeProject(this.id)
+            .subscribe(
+                data => {
+                    // console.log(data);
+                    // this.projects = data;
+                    // this.lsPoints = this.points;
+                },
+                error => console.error('Error: ' + error[0]),
+                () => {
+                    // console.log("Data loaded!")
+                }
+            )
     }
+
     openProject(e) {
         e.preventDefault();
         console.log("open");
+
+        this.projectService.removeProject(this.id)
+            .subscribe(
+                data => {
+                    // console.log(data);
+                    // this.projects = data;
+                    // this.lsPoints = this.points;
+                },
+                error => console.error('Error: ' + error[0]),
+                () => {
+                    // console.log("Data loaded!")
+                }
+            )
     }
 
     ngOnInit() {
+        this.id = this.project._id;
+        console.log(this.project._id);
     }
 
 }

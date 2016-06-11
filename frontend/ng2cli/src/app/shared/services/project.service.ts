@@ -37,4 +37,12 @@ export class ProjectService {
     removeProject(id) {
         return this.makeRequest(this.serverUrl + 'delete', id);
     }
+
+    openProject(id) {
+        this.updateProject(id, {isOpened: true});
+    }
+
+    closeProject(id) {
+        this.updateProject(id, {isOpened: false});
+    }
 }
