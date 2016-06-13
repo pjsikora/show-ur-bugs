@@ -19,7 +19,7 @@
     <div class="medium-4 columns text-right"><strong>actions</strong></div>
 </div>
 
-<div class="row" *ngFor="let user of (users | filterData: filter.value)">
+<div class="row" *ngFor="let user of (users | filterData: filter.value : {params: ['login']})">
     <div class="medium-4 columns"><a href="/#/users/{{user._id}}">{{user.login}}</a></div>
     <div class="medium-4 columns">{{user.email}}</div>
     <div class="medium-4 columns text-right">
