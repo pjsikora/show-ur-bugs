@@ -1,0 +1,19 @@
+<form #myForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="medium-push-3 medium-6 columns">
+            <label>Project name
+                <input type="text" placeholder="Project name" ngControl="name" [(ngModel)]="newProject.name" required>
+            </label>
+            <label>Description
+                <textarea type="text" placeholder="Description" ngControl="description"
+                          [(ngModel)]="newProject.description" required></textarea>
+            </label>
+            <label>User
+                <select name="" id="" [(ngModel)]="newProject.createdBy">
+                    <option *ngFor="let user of users" [value]="user._id">{{user.login}}</option>
+                </select>
+            </label>
+            <button class="button" type="submit">Add project</button>
+        </div>
+    </div>
+</form>

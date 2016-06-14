@@ -1,0 +1,33 @@
+<div class="row">
+    <form #myForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="medium-12 columns">
+            <h1>Add user</h1>
+        </div>
+        <div class="medium-6 columns">
+            <label>Name
+                <input type="text"
+                       placeholder="Login"
+                       [(ngModel)]="newUser.login">
+            </label>
+            <label>Email
+                <input type="text"
+                       placeholder="Email"
+                       [(ngModel)]="newUser.email">
+            </label>
+        </div>
+        <div class="medium-6 columns">
+
+            <label>Password
+                <input type="password"
+                       placeholder="Password"
+                       [(ngModel)]="newUser.password">
+            </label>
+            <label>Confirm password
+                <input type="password" placeholder="Confirm password">
+            </label>
+        </div>
+        <div class="medium-12 columns">
+            <button class="button" type="submit">Add user</button>
+        </div>
+    </form>
+</div>

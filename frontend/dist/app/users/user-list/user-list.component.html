@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="medium-12 columns">
+        <h1>Users list</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="medium-4 columns">
+        <a href="/#/users-form" class="button">Add user</a>
+    </div>
+    <div class="medium-8 columns">
+        <input type="text" placeholder="Search user" #filter (keyup)="0">
+    </div>
+</div>
+
+<div class="row">
+    <div class="medium-4 columns"><strong>login</strong></div>
+    <div class="medium-4 columns"><strong>email</strong></div>
+    <div class="medium-4 columns text-right"><strong>actions</strong></div>
+</div>
+
+<div class="row" *ngFor="let user of (users | filterData: filter.value : {filteredParam: ['login', 'email']})">
+<!--<div class="row" *ngFor="let user of (users | filterData: filter.value)">-->
+    <div class="medium-4 columns"><a href="/#/users/{{user._id}}">{{user.login}}</a></div>
+    <div class="medium-4 columns">{{user.email}}</div>
+    <div class="medium-4 columns text-right">
+        <a href="" class="button alert tiny">Delete</a>
+        <a href="" class="button tiny">Edit</a>
+        <a href="" class="button tiny">Edit</a>
+    </div>
+</div>

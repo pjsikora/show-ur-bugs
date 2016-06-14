@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="medium-12 columns"><h2>Project: {{id}}</h2></div>
+    <div class="medium-12 columns"><p>Project name: {{projectName}}</p></div>
+
+    <div class="medium-12 columns">
+        <h4>Views</h4>
+    </div>
+</div>
+
+
+<div *ngIf="viewsOfProject.length <= 0" class="row">
+    <div class="row">
+        <div class="medium-12 columns">
+            <p>No views</p>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="viewsOfProject.length > 0">
+    <div class="row">
+        <div class="medium-4 columns">
+            <a class="button" (click)="showAddViewWindow()">Add View</a>
+        </div>
+        <div class="medium-8 columns">
+            <input type="text" #filter (keyup)="0">
+        </div>
+    </div>
+    <div class="row">
+        <div class="medium-6 columns">
+            <strong>Name</strong>
+        </div>
+        <div class="medium-6 columns text-right">
+            <strong>Actions</strong>
+        </div>
+    </div>
+    <div class="row" *ngFor="let view of (viewsOfProject | filterData: filter.value) ">
+        <div class="medium-6 columns">
+            <a href="/#/view/{{view._id}}">{{view.name}}</a>
+        </div>
+        <div class="medium-6 columns text-right">
+            <a href="" class="button alert tiny" (click)="deleteProject($event)" data-id="">Delete</a>
+            <a href="" class="button tiny" (click)="editProject($event)">Edit</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="overlay" [style.display]="isWinVisible ? 'block' : 'none'">
+    <div class="window">
+        <h5>View details</h5>
+        <a (click)="hideAddViewWindow()">Close</a>
+        <form #myForm="ngForm" (ngSubmit)="createView()" [style.display]="!isFormWorking ? 'block' : 'none'">
+            <label>View name
+                <input type="text" placeholder="View name" ngControl="name" [(ngModel)]="newView.name">
+            </label>
+            <label>URL
+                <input type="text" placeholder="Screenshot URL" ngControl="screenshot"
+                       [(ngModel)]="newView.screenshotURL">
+            </label>
+            <label>Description
+                <textarea type="text" placeholder="Description" ngControl="description"
+                          [(ngModel)]="newView.description"></textarea>
+            </label>
+
+            <select name="" id="" [(ngModel)]="newView.createdBy">
+                <option *ngFor="let user of users" [value]="user._id">{{user.login}}</option>
+            </select>
+            <button class="button" type="submit">Add view</button>
+        </form>
+    </div>
+</div>

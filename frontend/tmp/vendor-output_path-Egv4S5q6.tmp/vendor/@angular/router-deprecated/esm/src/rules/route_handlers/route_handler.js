@@ -1,0 +1,1 @@
+/Users/piotr/_free/graphic-editor/frontend/ng2cli/tmp/vendor-input_base_path-XldP0teY.tmp/0/@angular/router-deprecated/esm/src/rules/route_handlers/route_handler.js

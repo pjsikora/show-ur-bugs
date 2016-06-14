@@ -1,0 +1,1 @@
+/Users/piotr/_free/graphic-editor/frontend/ng2cli/tmp/broccoli_merge_trees-input_base_path-jFVo1wGn.tmp/0/src/app/index.ts

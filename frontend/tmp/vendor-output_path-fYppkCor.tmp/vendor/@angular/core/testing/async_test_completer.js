@@ -1,0 +1,1 @@
+/Users/piotr/_free/graphic-editor/frontend/ng2cli/tmp/vendor-input_base_path-AaMnvyDT.tmp/0/@angular/core/testing/async_test_completer.js

@@ -1,0 +1,1 @@
+{"version":3,"file":"project-item.interface.js","sourceRoot":"","sources":["project-item.interface.ts"],"names":[],"mappings":"","sourcesContent":["export interface ProjectItem {\n    name: string;\n    createDate: string;\n    description: string;\n    createdBy: string;\n    isOpened: boolean;\n    isDeleted: boolean;\n}"]}

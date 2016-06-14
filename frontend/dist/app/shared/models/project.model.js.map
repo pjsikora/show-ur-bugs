@@ -1,0 +1,1 @@
+{"version":3,"file":"project.model.js","sourceRoot":"","sources":["project.model.ts"],"names":[],"mappings":"","sourcesContent":["export interface ProjectModel {\n    name: string;\n    description: string;\n    // createDate: string;\n    createdBy: string;\n    // isOpened: boolean;\n    // isDeleted: boolean;\n}\n"]}

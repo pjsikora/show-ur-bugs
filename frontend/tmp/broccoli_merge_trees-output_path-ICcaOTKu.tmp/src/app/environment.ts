@@ -1,0 +1,1 @@
+/Users/piotr/_free/graphic-editor/frontend/config/environment.dev.ts

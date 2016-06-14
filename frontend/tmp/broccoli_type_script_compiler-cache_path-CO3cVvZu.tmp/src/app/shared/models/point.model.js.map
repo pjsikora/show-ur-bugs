@@ -1,0 +1,1 @@
+{"version":3,"file":"point.model.js","sourceRoot":"","sources":["point.model.ts"],"names":[],"mappings":"","sourcesContent":["export interface PointModel {\n    name: string;\n    description: string;\n    viewID: string;\n    // createDate: string;\n    createdBy: string;\n    x: number;\n    y: number;\n    isOpened: boolean;\n    isDeleted: boolean;\n}\n"]}

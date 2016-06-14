@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="medium-12 columns">
+        <input type="text" #filter (keyup)="0">
+    </div>
+</div>
+
+<div class="row">
+    <div class="medium-4 columns">
+        <strong>Name</strong>
+    </div>
+    <div class="medium-4 columns">
+        <strong>ViewID</strong>
+    </div>
+    <div class="medium-4 columns">
+        <strong>Actions</strong>
+    </div>
+</div>
+
+<div class="row"
+     *ngFor="let point of (points | filterData: filter.value : {params: ['all']})">
+    <div class="medium-4 columns">
+        {{point.name}}
+    </div>
+    <div class="medium-4 columns">
+        <a href="/#/view/{{point.viewID}}">{{point.viewID}}</a>
+    </div>
+    <div class="medium-4 columns text-right">
+        <a href="" class="button alert tiny" (click)="removePoint($event)"
+           data-id="{{point._id}}">Delete</a>
+        <a href="" class="button tiny">Edit</a>
+    </div>
+    <!--<td>{{point.x}}</td>-->
+    <!--<td>{{point.y}}</td>-->
+
+    <!--<td>{{point.createDate}}</td>-->
+    <!--<td>{{point.createdBy}}</td>-->
+    <!--<td>{{point.isOpened}}</td>-->
+    <!--<td>{{point.isDeleted}}</td>-->
+
+</div>
+
+
+<nav class="main_nav">
+    <ul>
+        <li>
+            <a href="link1">Link 1</a>
+
+            <ul>
+                <li>
+                    <a href="link1">Link 1.1</a>
+
+
+                </li>
+                <li>
+                    <a href="link2">Link 1.2</a>
+                </li>
+                <li>
+                    <a href="link3">Link 1.3</a>
+                </li>
+                <li>
+                    <a href="link4">Link 1.4</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="link2">Link 2</a>
+        </li>
+        <li>
+            <a href="link3">Link 3</a>
+        </li>
+        <li>
+            <a href="link4">Link 4</a>
+
+            <ul>
+                <li>
+                    <a href="link1">Link 4.1</a>
+                </li>
+                <li>
+                    <a href="link2">Link 4.2</a>
+                </li>
+                <li>
+                    <a href="link3">Link 4.3</a>
+                </li>
+                <li>
+                    <a href="link4">Link 4.4</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
