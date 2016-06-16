@@ -43,6 +43,8 @@ const barrels: string[] = [
   'app/users/user-list',
   'app/users/user-single',
   'app/users/user-form',
+  'app/shared/popup',
+  'app/views/view-list',
   /** @cli-barrel */
 ];
 

@@ -9,25 +9,25 @@ import {
 import { ComponentFixture, TestComponentBuilder } from '@angular/compiler/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { ViewListComponent } from './view-list.component';
+import { PopupComponent } from './popup.component';
 
-describe('Component: ViewListComponent', () => {
+describe('Component: Popup', () => {
   let builder: TestComponentBuilder;
 
-  beforeEachProviders(() => [ViewListComponent]);
+  beforeEachProviders(() => [PopupComponent]);
   beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
     builder = tcb;
   }));
 
-  it('should inject the component', inject([ViewListComponent],
-      (component: ViewListComponent) => {
+  it('should inject the component', inject([PopupComponent],
+      (component: PopupComponent) => {
     expect(component).toBeTruthy();
   }));
 
   it('should create the component', inject([], () => {
-    return builder.createAsync(ViewListComponentComponentTestController)
+    return builder.createAsync(PopupComponentTestController)
       .then((fixture: ComponentFixture<any>) => {
-        let query = fixture.debugElement.query(By.directive(ViewListComponent));
+        let query = fixture.debugElement.query(By.directive(PopupComponent));
         expect(query).toBeTruthy();
         expect(query.componentInstance).toBeTruthy();
       });
@@ -37,10 +37,10 @@ describe('Component: ViewListComponent', () => {
 @Component({
   selector: 'test',
   template: `
-    <app-view-list-component></app-view-list-component>
+    <app-popup></app-popup>
   `,
-  directives: [ViewListComponent]
+  directives: [PopupComponent]
 })
-class ViewListComponentComponentTestController {
+class PopupComponentTestController {
 }
 

@@ -29,7 +29,7 @@ var FilterData = (function () {
                     var item = items_1[_i];
                     for (var _a = 0, paramNames_1 = paramNames; _a < paramNames_1.length; _a++) {
                         var param = paramNames_1[_a];
-                        if (item[param].toString() != null && item[param].toString().match(new RegExp('' + args, 'i'))) {
+                        if (typeof item[param] !== "undefined" && item[param].toString() != null && item[param].toString().match(new RegExp('' + args, 'i'))) {
                             resultArray.push(item);
                             break; // if element is added do not add it second time
                         }

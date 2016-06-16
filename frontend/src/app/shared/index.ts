@@ -10,4 +10,4 @@ export {
     PointModel,
     ViewModel,
     ProjectModel
-} from './models/index';
+} from './models/index';export * from './popup';

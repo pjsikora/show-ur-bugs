@@ -12,36 +12,36 @@ var testing_1 = require('@angular/core/testing');
 var testing_2 = require('@angular/compiler/testing');
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
-var view_list_component_1 = require('./view-list.component');
-testing_1.describe('Component: ViewListComponent', function () {
+var popup_component_1 = require('./popup.component');
+testing_1.describe('Component: Popup', function () {
     var builder;
-    testing_1.beforeEachProviders(function () { return [view_list_component_1.ViewListComponent]; });
+    testing_1.beforeEachProviders(function () { return [popup_component_1.PopupComponent]; });
     testing_1.beforeEach(testing_1.inject([testing_2.TestComponentBuilder], function (tcb) {
         builder = tcb;
     }));
-    testing_1.it('should inject the component', testing_1.inject([view_list_component_1.ViewListComponent], function (component) {
+    testing_1.it('should inject the component', testing_1.inject([popup_component_1.PopupComponent], function (component) {
         testing_1.expect(component).toBeTruthy();
     }));
     testing_1.it('should create the component', testing_1.inject([], function () {
-        return builder.createAsync(ViewListComponentComponentTestController)
+        return builder.createAsync(PopupComponentTestController)
             .then(function (fixture) {
-            var query = fixture.debugElement.query(platform_browser_1.By.directive(view_list_component_1.ViewListComponent));
+            var query = fixture.debugElement.query(platform_browser_1.By.directive(popup_component_1.PopupComponent));
             testing_1.expect(query).toBeTruthy();
             testing_1.expect(query.componentInstance).toBeTruthy();
         });
     }));
 });
-var ViewListComponentComponentTestController = (function () {
-    function ViewListComponentComponentTestController() {
+var PopupComponentTestController = (function () {
+    function PopupComponentTestController() {
     }
-    ViewListComponentComponentTestController = __decorate([
+    PopupComponentTestController = __decorate([
         core_1.Component({
             selector: 'test',
-            template: "\n    <app-view-list-component></app-view-list-component>\n  ",
-            directives: [view_list_component_1.ViewListComponent]
+            template: "\n    <app-popup></app-popup>\n  ",
+            directives: [popup_component_1.PopupComponent]
         }), 
         __metadata('design:paramtypes', [])
-    ], ViewListComponentComponentTestController);
-    return ViewListComponentComponentTestController;
+    ], PopupComponentTestController);
+    return PopupComponentTestController;
 }());
-//# sourceMappingURL=view-list.component.spec.js.map
+//# sourceMappingURL=popup.component.spec.js.map

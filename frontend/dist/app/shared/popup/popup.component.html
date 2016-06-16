@@ -1,0 +1,8 @@
+<div class="window__overlay" [style.display]="isVisible ? 'block' : 'none'">
+  <div class="window__content">
+    <div class="window__close" (click)="closeWindow($event)">close</div>
+    <input type="text" placeholder="Name" [(ngModel)]="nameOfPoint">
+    <textarea name="" id="" cols="30" rows="10" placeholder="Description" [(ngModel)]="descOfPoint"></textarea>
+    <button (click)="createPoint()" class="button">Add point</button>
+  </div>
+</div>
