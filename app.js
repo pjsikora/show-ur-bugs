@@ -48,7 +48,7 @@ if (typeof(process.env.PORT) == "undefined") {
 
 
 // Public / static folder
-app.use(express.static('./frontend/ng2cli/dist'));
+app.use(express.static('./frontend/dist'));
 
 
 
