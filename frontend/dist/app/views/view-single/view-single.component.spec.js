@@ -22,6 +22,16 @@ testing_1.describe('Component: ViewSingle', function () {
     testing_1.it('should inject the component', testing_1.inject([view_single_component_1.ViewSingleComponent], function (component) {
         testing_1.expect(component).toBeTruthy();
     }));
+    // it('should have ', inject([ViewSingleComponent],
+    //     (component: ViewSingleComponent) => {
+    //   expect(component).toBeTruthy();
+    // }));
+    testing_1.beforeEach(function () {
+        this.vsc = new view_single_component_1.ViewSingleComponent();
+    });
+    testing_1.it('should have hello property', function () {
+        testing_1.expect(this.vsc.id).toBe('router');
+    });
     testing_1.it('should create the component', testing_1.inject([], function () {
         return builder.createAsync(ViewSingleComponentTestController)
             .then(function (fixture) {
@@ -30,6 +40,24 @@ testing_1.describe('Component: ViewSingle', function () {
             testing_1.expect(query.componentInstance).toBeTruthy();
         });
     }));
+    // it('should render', inject([], () => {
+    //   return builder.createAsync(ViewSingleComponentTestController)
+    //     .then((fixture: ComponentFixture<any>) => {
+    //       let query = fixture.debugElement.query(By.directive(ViewSingleComponent));
+    //       expect(query).toBeTruthy();
+    //       expect(query.componentInstance).toBeTruthy();
+    //     });
+    // }));
+    //
+    //
+    // it('should render list', injectAsync([TestComponentBuilder], (tcb: TestComponentBuilder) => {
+    //   return tcb.createAsync(ViewSingleComponent).then((componentFixture: ComponentFixture) => {
+    //     const element = componentFixture.nativeElement;
+    //     componentFixture.componentInstance.users = ['John'];
+    //     componentFixture.detectChanges();
+    //     expect(element.querySelectorAll('span').length).toBe(1);
+    //   });
+    // }));
 });
 var ViewSingleComponentTestController = (function () {
     function ViewSingleComponentTestController() {

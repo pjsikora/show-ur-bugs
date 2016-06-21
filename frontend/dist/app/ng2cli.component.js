@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var view_list_component_1 = require('./views/view-list.component');
+var view_list_1 = require('./views/view-list');
 var index_1 = require('./views/view-single/index');
 var index_2 = require('./users/index');
 var index_3 = require('./points/point-list/index');
@@ -31,7 +31,7 @@ var Ng2cliAppComponent = (function () {
         }),
         router_1.Routes([
             { path: '/view/:id', component: index_1.ViewSingleComponent },
-            { path: '/views', component: view_list_component_1.ViewListComponent },
+            { path: '/views', component: view_list_1.ViewListComponent },
             { path: '/users', component: index_2.UserListComponent },
             { path: '/users-form', component: index_2.UserFormComponent },
             { path: '/user/:id', component: index_2.UserSingleComponent },

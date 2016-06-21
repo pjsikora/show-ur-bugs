@@ -19,16 +19,16 @@ import {PointModel, ViewService, PointService} from "../../shared";
 export class ViewSingleComponent {
     lsPoints;
     points;
-    id;
+    id = 'route';
     isWinVisible:boolean = false;
     nameOfPoint;
     descOfPoint;
     newX;
     newY;
 
-    constructor(params:RouteSegment,
-                public viewService:ViewService,
-                public pointService:PointService) {
+    constructor(params?:RouteSegment,
+                public viewService?:ViewService,
+                public pointService?:PointService) {
         this.id = params.getParam('id');
     }
 
@@ -64,6 +64,24 @@ export class ViewSingleComponent {
 
         this.newX = e.layerX;
         this.newY = e.layerY;
+    }
+
+    onImageClick(e) {
+
+    }
+
+    preparePoint(newX, newY) {
+        var point = {
+            x: newX,
+            y: newY,
+            viewID: this.id,
+            name: this.nameOfPoint,
+            isOpened: true,
+            description: this.descOfPoint,
+            createdBy: '5728620832237db8158e161e'
+        };
+
+        return point;
     }
 
     createPoint(e) {

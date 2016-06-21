@@ -5,7 +5,9 @@ import {
   expect,
   it,
   inject,
+  injectAsync
 } from '@angular/core/testing';
+
 import { ComponentFixture, TestComponentBuilder } from '@angular/compiler/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -24,6 +26,20 @@ describe('Component: ViewSingle', () => {
     expect(component).toBeTruthy();
   }));
 
+  // it('should have ', inject([ViewSingleComponent],
+  //     (component: ViewSingleComponent) => {
+  //   expect(component).toBeTruthy();
+  // }));
+
+  beforeEach(function() {
+    this.vsc = new ViewSingleComponent();
+  });
+
+  it('should have hello property', function() {
+    expect(this.vsc.id).toBe('router');
+  });
+
+
   it('should create the component', inject([], () => {
     return builder.createAsync(ViewSingleComponentTestController)
       .then((fixture: ComponentFixture<any>) => {
@@ -32,6 +48,25 @@ describe('Component: ViewSingle', () => {
         expect(query.componentInstance).toBeTruthy();
       });
   }));
+
+  // it('should render', inject([], () => {
+  //   return builder.createAsync(ViewSingleComponentTestController)
+  //     .then((fixture: ComponentFixture<any>) => {
+  //       let query = fixture.debugElement.query(By.directive(ViewSingleComponent));
+  //       expect(query).toBeTruthy();
+  //       expect(query.componentInstance).toBeTruthy();
+  //     });
+  // }));
+  //
+  //
+  // it('should render list', injectAsync([TestComponentBuilder], (tcb: TestComponentBuilder) => {
+  //   return tcb.createAsync(ViewSingleComponent).then((componentFixture: ComponentFixture) => {
+  //     const element = componentFixture.nativeElement;
+  //     componentFixture.componentInstance.users = ['John'];
+  //     componentFixture.detectChanges();
+  //     expect(element.querySelectorAll('span').length).toBe(1);
+  //   });
+  // }));
 });
 
 @Component({

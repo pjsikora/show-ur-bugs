@@ -1,1 +1,0 @@
-{"version":3,"file":"view.model.js","sourceRoot":"","sources":["view.model.ts"],"names":[],"mappings":"","sourcesContent":["export interface ViewModel {\n    name: string;\n    screenshotURL: string;\n    description: string;\n    projectID: string;\n}\n\n"]}

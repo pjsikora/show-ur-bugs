@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Routes, Router, ROUTER_DIRECTIVES} from '@angular/router';
 
-import {ViewListComponent} from './views/view-list.component';
+import {ViewListComponent} from './views/view-list';
 import {ViewSingleComponent} from './views/view-single/index';
 import {UserListComponent,UserFormComponent, UserSingleComponent} from './users/index';
 import {PointListComponent} from './points/point-list/index';

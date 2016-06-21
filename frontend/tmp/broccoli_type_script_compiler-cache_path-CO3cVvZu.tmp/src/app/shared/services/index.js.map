@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["index.ts"],"names":[],"mappings":";;;;AAAA,iBAAc,iBAAiB,CAAC,EAAA;AAChC,iBAAc,mBAAmB,CAAC,EAAA;AAClC,iBAAc,gBAAgB,CAAC,EAAA;AAC/B,iBAAc,gBAAgB,CAAC,EAAA","sourcesContent":["export * from './point.service';\nexport * from './project.service';\nexport * from './user.service';\nexport * from './view.service';\n"]}

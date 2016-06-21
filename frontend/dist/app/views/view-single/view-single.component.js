@@ -17,6 +17,7 @@ var ViewSingleComponent = (function () {
     function ViewSingleComponent(params, viewService, pointService) {
         this.viewService = viewService;
         this.pointService = pointService;
+        this.id = 'route';
         this.isWinVisible = false;
         this.id = params.getParam('id');
     }
@@ -44,6 +45,20 @@ var ViewSingleComponent = (function () {
         this.isWinVisible = !this.isWinVisible;
         this.newX = e.layerX;
         this.newY = e.layerY;
+    };
+    ViewSingleComponent.prototype.onImageClick = function (e) {
+    };
+    ViewSingleComponent.prototype.preparePoint = function (newX, newY) {
+        var point = {
+            x: newX,
+            y: newY,
+            viewID: this.id,
+            name: this.nameOfPoint,
+            isOpened: true,
+            description: this.descOfPoint,
+            createdBy: '5728620832237db8158e161e'
+        };
+        return point;
     };
     ViewSingleComponent.prototype.createPoint = function (e) {
         var _this = this;

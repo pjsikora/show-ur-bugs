@@ -13,7 +13,7 @@ var router = express.Router();
 // Load database configuration
 var config = require('./config');
 
-// app.use(morgan('dev'));
+app.use(morgan('dev'));
 
 app.use(bodyParser.json());
 
